@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AnySCL.info.AliveInfo" Collapsed="true">
+    <Position X="32.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>info\AliveInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.info.CCUInfo" Collapsed="true">
+    <Position X="37.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAkIAAAAAQAAAAAAAEAAAAAADAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>info\CCUInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.info.CCUState" Collapsed="true">
+    <Position X="39.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQgAAAAAIAAkAAAAAEAAAAAAEAAAABACgAI=</HashCode>
+      <FileName>info\CCUState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.info.LogInfo" Collapsed="true">
+    <Position X="30.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAgBAAAAAAAAAAAAAAgABAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>info\LogInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.info.RecordInfo" Collapsed="true">
+    <Position X="30.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAQAAAAAAABAAAAAAAAAAAAAAAIAAAAAAAAABAAAA=</HashCode>
+      <FileName>info\RecordInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.info.CrackInfo" Collapsed="true">
+    <Position X="34" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACUKAQYbCcAQwAQEAEiUAEgGACElAEQCxhABBAAAA=</HashCode>
+      <FileName>info\CrackInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyCCU.info.RaceInfo" Collapsed="true">
+    <Position X="28.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AggwwAgAEAAEAAAABAAAEBAAgQQAAAAFAAAAABAIAAY=</HashCode>
+      <FileName>info\RaceInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.library.CRC32" Collapsed="true">
+    <Position X="39.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAACABAAAA=</HashCode>
+      <FileName>library\Crc32.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.library.PDFMaker" Collapsed="true">
+    <Position X="30.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAACAQAAAAABBAAACAACAmAAIAAAA=</HashCode>
+      <FileName>library\PDFMaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.library.NetServer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="37.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkiAgAAABACAAAAAQIAAAFAAwAQAAAAACIAACAAMAAA=</HashCode>
+      <FileName>network\NetServer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AnyCCU.manager.CrackNotice" Collapsed="true">
+    <Position X="35.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAEICBAAAAAAAAAAEAAAAIAAAAAAAAAgAA=</HashCode>
+      <FileName>manager\CrackReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyCCU.manager.CrackReport" Collapsed="true">
+    <Position X="37.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAEQABAAAAAAAAAAAAAgAAAAAAIAAACAAAEBAAIAAA=</HashCode>
+      <FileName>manager\CrackReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyCCU.manager.UDPServer" Collapsed="true">
+    <Position X="34" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAEAgAAAAAAAAAAAAAQAAAAAAAAAACABAAAEgAEA=</HashCode>
+      <FileName>manager\UDPServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiBase" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAMAAAAAAAAAAAAQAAAAABAAAABCA=</HashCode>
+      <FileName>network\legacy\sinho\SiBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode01" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode02" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode03" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode03.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode05" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode05.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode06" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode06.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode07" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAIAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode07.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode11" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAggAAAAAAAAAAAAABAAAAAEgABAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode11.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode12" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABBAgAAAAAAAEAABAgAAAASAQAAAIBAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode12.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode20" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBABAAAAAAAAAAABAAAgAAAAAAAAAAIEAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode20.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode25" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBABAAAAAAAAAAABAAAgAAAAAAAAAAIEAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode25.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode40" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBABAAAAAAAAAAABAAAgAAAAAAAAAAIEAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode40.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiCode61" Collapsed="true">
+    <Position X="24" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAggAAAAAAAAAAAAAAAAAACEgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiCode61.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.AcNaInfo" Collapsed="true">
+    <Position X="30.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>network\legacy\sinho\SiHeadInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SiHeadInfo" Collapsed="true">
+    <Position X="32.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAwgAAABAAAQEAAAACAYAAAACAAACAAgAAIAAI=</HashCode>
+      <FileName>network\legacy\sinho\SiHeadInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sinho.SinhoMgr" Collapsed="true">
+    <Position X="34" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAQAAgAAQAAAAAAAAAABAAAABAAAAAQAIAgCEIAgA=</HashCode>
+      <FileName>network\legacy\sinho\SinhoMgr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoBase" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAMAAAAAAAAAAAAQAAAAABAAAAACA=</HashCode>
+      <FileName>network\legacy\sokdo\SoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode01" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode02" Collapsed="true">
+    <Position X="35.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAMAAAAAAAAAAAgQAAAAABAAAAACA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode03" Collapsed="true">
+    <Position X="37.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAMAAAAAAAAAAAgQAAAAABAAAIACA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode03.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode05" Collapsed="true">
+    <Position X="39.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAMAAAAAAAAAAAgQAAAAABAAAAACA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode05.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode11" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAABAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode11.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode12" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAIBAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode12.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode13" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBABAAAAAAAAAAAAAAAgAAAAAAAAAAIEAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode13.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoCode14" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBABAAAAAAAAAAAAAAAgAAAAAAAAAAIEAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoCode14.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.AcNaInfo" Collapsed="true">
+    <Position X="28.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoHeadInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SoHeadInfo" Collapsed="true">
+    <Position X="28.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAwAAAABAAIAEAAAAKAYAIAAAAAACAAgAAAAAA=</HashCode>
+      <FileName>network\legacy\sokdo\SoHeadInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.network.legacy.sokdo.SokdoMgr" Collapsed="true">
+    <Position X="30.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAgAAQAAAAAIAAAARAAAABAAAAAQAIAAAEAAgA=</HashCode>
+      <FileName>network\legacy\sokdo\SokdoMgr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.payload.CrackDown" Collapsed="true">
+    <Position X="32.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAIAAkAAADAAAACACQA=</HashCode>
+      <FileName>network\payload\CrackDown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.payload.HandShake" Collapsed="true">
+    <Position X="32.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAABAAAAAAAAAAAAAAAAQAAAAACAAAEABAA=</HashCode>
+      <FileName>network\payload\HandShake.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.payload.NetAlive" Collapsed="true">
+    <Position X="35.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>network\payload\NetAlive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.payload.PayloadBase" Collapsed="true">
+    <Position X="39.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIIAAAgAAAAAAAAAAAAAAAAAAAIAACAAAAAQ=</HashCode>
+      <FileName>network\payload\PayloadBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.payload.PayloadLog" Collapsed="true">
+    <Position X="28.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>network\payload\PayloadLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.payload.WatchDog" Collapsed="true">
+    <Position X="35.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAAAAAAAAA=</HashCode>
+      <FileName>network\payload\WatchDog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.ConnInfo" Collapsed="true">
+    <Position X="28.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIEAAAAAAAAAAEAMAAAAEAAAAAAEBABGCAAA=</HashCode>
+      <FileName>network\ConnInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.PHead" Collapsed="true">
+    <Position X="32.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAEBFCOAQAAAAAAAAAAAAAAAAAEgAAAABA=</HashCode>
+      <FileName>network\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.network.Protocol" Collapsed="true">
+    <Position X="39.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAQAAQkQABAEQggAIAETEAgEgAAAAAAAACAAAAI=</HashCode>
+      <FileName>network\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.process.ProcAlive" Collapsed="true">
+    <Position X="34" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>process\ProcAlive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.process.ProcEvent" Collapsed="true">
+    <Position X="35.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>process\ProcEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnySCL.process.ProcState" Collapsed="true">
+    <Position X="37.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>process\ProcState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.DateUtil" Collapsed="true">
+    <Position X="28.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAATQACAAAAAAFAQAAAACAAEgAAAAAgAAAgEAUAAA=</HashCode>
+      <FileName>utils\DateUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.HashUtil" Collapsed="true">
+    <Position X="34" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utils\HashUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.HexDump" Collapsed="true">
+    <Position X="35.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utils\HexDump.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.ImageUtil" Collapsed="true">
+    <Position X="37.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAABAAAAQAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>utils\ImageUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.IniUtil" Collapsed="true">
+    <Position X="39.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAgAAAAAAAABAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utils\IniUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.ListUtil" Collapsed="true">
+    <Position X="28.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAgAAAAAAACAAAgAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>utils\ListUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.AtomicBoolean" Collapsed="true">
+    <Position X="35.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAABAAIAQEAAgAAAAABA=</HashCode>
+      <FileName>utils\LogUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.LogUtil" Collapsed="true">
+    <Position X="32.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoABAAAEEBhAAAEgAAAAAAAAAAgAAAAAAAAAAAAABMA=</HashCode>
+      <FileName>utils\LogUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.MiscUtil" Collapsed="true">
+    <Position X="34" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAKAABAAAAgBAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utils\MiscUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FireFly.utils.StaticUtil" Collapsed="true">
+    <Position X="32.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>utils\StaticUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyCCU.Global" Collapsed="true">
+    <Position X="30.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAQAIABQAgAAAQAAEACAJgASCAAAACBCACIAUAAgA=</HashCode>
+      <FileName>AnyCCU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyCCU.AnyCCU" Collapsed="true">
+    <Position X="34" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>AnyCCU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyCCU.Const" Collapsed="true">
+    <Position X="30.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQBAAAIAAAAAAAEBAAAAAEAAAAAAAAAIAA=</HashCode>
+      <FileName>AnyCCU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="FireFly.utils.CBLogDisplay" Collapsed="true">
+    <Position X="28.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>utils\LogUtil.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FireFly.utils.CBLogNetwork" Collapsed="true">
+    <Position X="30.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>utils\LogUtil.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,26 @@
+## Visual Studio / C# .gitignore
+
+# Build results & publish outputs
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Pp]ublish/
+publish/
+GTFinder/publish/
+*.exe
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+packages/
+*.nupkg
+
+# User zip files & temporary
+*.zip
+temp_extract/
