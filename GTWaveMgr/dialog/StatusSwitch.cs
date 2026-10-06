@@ -1,4 +1,4 @@
-﻿using AnyBoBu.info;
+using AnyBoBu.info;
 using Awool;
 using Google.Protobuf.Collections;
 using GTWave.info;
@@ -19,6 +19,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Button = System.Windows.Forms.Button;
+using Point = System.Drawing.Point;
 using static IronPython.Modules._ast;
 using static MindFusion.Swf.Tools;
 
@@ -38,6 +40,8 @@ namespace AnyBoBu.dialog
 
 		Hashtable	mOids		= new Hashtable();
 
+		private Dictionary<int, Button> mPortButtons = new Dictionary<int, Button>();
+
 		SortedDictionary<int, SwitchPortInfo> mPortOids	= new SortedDictionary<int, SwitchPortInfo>();
 		SortedDictionary<int, SwitchPoeInfo> mPoeOids	= new SortedDictionary<int, SwitchPoeInfo>();
 		SortedDictionary<int, SwitchDdmInfo> mDdmOids	= new SortedDictionary<int, SwitchDdmInfo>();
@@ -53,47 +57,48 @@ namespace AnyBoBu.dialog
 		}
 
 		private void StatusSwitch_Load(object sender, EventArgs e) {
+			mtb_sys_addr.KeyPress += new KeyPressEventHandler(mtb_sys_addr_KeyPress);
+			mtb_sys_addr.TextChanged += new EventHandler(mtb_sys_addr_TextChanged);
+
+			if (dInfo != null) {
+				tb_sys_name.Text = dInfo.name;
+				mtb_sys_addr.Text = dInfo.addr;
+			}
+
 			var results = GlobalHelpers.mSwitchTb.Query()
-				.Where(x => x.deviceId.Equals(dInfo.id))
-				//.OrderBy(x => x.name)
-				//.Select(x => new { x.site, NameUpper = x.site.ToUpper() })
-				//.Limit(10)
+				.Where(x => x.deviceId.Equals(dInfo != null ? dInfo.id : -1))
 				.ToList();
 
 			if (results.Count > 0) {
 				sInfo = results[0];
-				DispInfo();
 			} else {
-				MessageBox.Show("스위치 세팅값이 없습니다.\n스위치 세팅을 해주세요.", "알림창");
-				Close();
+				sInfo = new SwitchInfo(dInfo != null ? dInfo.id : 0);
+				sInfo.numEth = 24;
+				sInfo.numSfp = 4;
 			}
 
 			TotPortNum = sInfo.numEth + sInfo.numPoe + sInfo.numSfp - sInfo.numCombo;
-
-			LoadOids();
-
-			if (mOids.Count == 0) {
-				Console.WriteLine($"SNMP 타겟이 유효하지 않습니다.");
-				MessageBox.Show($"SNMP 타겟에 내용이 유효하지 않습니다.", "알 림 창");
-				Close();
-				return;
-			}
-			// 
-			SetSubOids();
-
-			mSnmp = new SimpleSnmp(dInfo.addr, "public");
-			if (!mSnmp.Valid) {
-				Console.WriteLine($"SNMP 타겟이 유효하지 않습니다.");
-				MessageBox.Show($"SNMP 타겟이 IP:{dInfo.addr} 유효하지 않습니다.", "알 림 창");
-				Close();
-				return;
-			}
+			if (TotPortNum <= 0) TotPortNum = 24;
 
 			DispInfo();
 
-			//SetPortStatus(5, 1);
-			ScanOids("SysInfo");
-			ScanArrayOids("PortStatus", lv_port_status);
+			try {
+				LoadOids();
+
+				if (mOids.Count > 0) {
+					SetSubOids();
+				}
+
+				if (dInfo != null && !string.IsNullOrEmpty(dInfo.addr)) {
+					mSnmp = new SimpleSnmp(dInfo.addr, "public");
+					if (mSnmp != null && mSnmp.Valid) {
+						ScanOids("SysInfo");
+						ScanArrayOids("PortStatus", lv_port_status);
+					}
+				}
+			} catch (Exception ex) {
+				Debug.WriteLine("StatusSwitch SNMP Error: " + ex.Message);
+			}
 		}
 
 		// 
@@ -178,14 +183,33 @@ namespace AnyBoBu.dialog
 			}
 		}
 
-		private	void	SetPortStatus(int num, int level) {
-			if (lv_net_1.Items.Count < num) {
-				MessageBox.Show("잘못된 포트번호 입니다.", "알 림 참");
+		private void SetPortStatus(int num, int level) {
+			if (!mPortButtons.ContainsKey(num)) {
 				return;
 			}
 
-			var data = lv_net_1.Items[num-1].Tag as ItemData;
+			var btn = mPortButtons[num];
+			var data = btn.Tag as ItemData;
+			if (data == null) {
+				data = new ItemData(level);
+				btn.Tag = data;
+			}
 			data.level = level;
+
+			switch (level) {
+				case 0:
+					btn.BackColor = Color.White;
+					break;
+				case 1:
+					btn.BackColor = Color.Green;
+					break;
+				case 2:
+					btn.BackColor = Color.Yellow;
+					break;
+				default:
+					btn.BackColor = Color.White;
+					break;
+			}
 		}
 
 		// kind -> 0 : System Info
@@ -198,9 +222,8 @@ namespace AnyBoBu.dialog
 			}
 			*/
 
-			if (mSnmp == null) {
-				MessageBox.Show("스위치 세팅값이 없습니다.\n스위치 세팅을 해주세요.", "알림창");
-				Close();
+			if (mSnmp == null || !mSnmp.Valid) {
+				return;
 			}
 
 			List<string> list = new List<string>();
@@ -238,6 +261,9 @@ namespace AnyBoBu.dialog
 
 		// PortStatus, PoeStatus, mDdmStatus
 		private void ScanArrayOids(string kind, ListView listView) {
+			if (mSnmp == null || !mSnmp.Valid) {
+				return;
+			}
 			switch (kind) {
 				case "PortStatus":
 					lv_port_status.Items.Clear();
@@ -461,31 +487,59 @@ namespace AnyBoBu.dialog
 		}
 
 
-		public  void    DispInfo() {
+		public void DispInfo() {
+			pnl_ports.Controls.Clear();
+			mPortButtons.Clear();
 
-			lv_net_1.Items.Clear();
-			for (int i = 1; i < TotPortNum + 1; i++) {
-				ListViewItem item = new ListViewItem(i.ToString());
-				item.SubItems.Add(i.ToString());
-				item.UseItemStyleForSubItems = false;
-				item.BackColor = Color.Red;
-				item.Tag = new ItemData(0);
-				lv_net_1.Items.Add(item);
+			if (TotPortNum < 8) {
+				// 포트수가 적을 때 (8포트 미만): 1줄 가로 배치
+				int btnWidth = 36;
+				int btnHeight = 32;
+				int spacing = 4;
+				int startX = 6;
+				int startY = (pnl_ports.ClientSize.Height - btnHeight) / 2;
+				if (startY < 4) startY = 4;
+
+				for (int i = 1; i <= TotPortNum; i++) {
+					Button btn = new Button();
+					btn.Text = i.ToString();
+					btn.Size = new Size(btnWidth, btnHeight);
+					btn.Location = new Point(startX + (i - 1) * (btnWidth + spacing), startY);
+					btn.BackColor = Color.White;
+					btn.FlatStyle = FlatStyle.Flat;
+					btn.FlatAppearance.BorderColor = Color.Black;
+					btn.Tag = new ItemData(0);
+					pnl_ports.Controls.Add(btn);
+					mPortButtons[i] = btn;
+				}
+			} else {
+				// 포트수가 많을 때 (8포트 이상): 2줄 고정 지그재그 (상단: 홀수 1, 3, 5..., 하단: 짝수 2, 4, 6...)
+				int btnWidth = 36;
+				int btnHeight = 30;
+				int spacingX = 4;
+				int spacingY = 4;
+				int startX = 6;
+				int topY = 6;
+				int bottomY = topY + btnHeight + spacingY;
+
+				for (int i = 1; i <= TotPortNum; i++) {
+					int col = (i - 1) / 2;
+					bool isOdd = (i % 2 != 0);
+					int x = startX + col * (btnWidth + spacingX);
+					int y = isOdd ? topY : bottomY;
+
+					Button btn = new Button();
+					btn.Text = i.ToString();
+					btn.Size = new Size(btnWidth, btnHeight);
+					btn.Location = new Point(x, y);
+					btn.BackColor = Color.White;
+					btn.FlatStyle = FlatStyle.Flat;
+					btn.FlatAppearance.BorderColor = Color.Black;
+					btn.Tag = new ItemData(0);
+					pnl_ports.Controls.Add(btn);
+					mPortButtons[i] = btn;
+				}
 			}
-
-		/*
-			cb_system_kind.Text	= dInfo.type;
-			tb_uptime.Text	= $"{dInfo.groupNm}";
-			tb_system_nm.Text   = dInfo.name;
-			cb_is_dumy.Checked	= dInfo.isDumy;
-			mtb_addr.Text		= dInfo.addr;
-			cb_check_type.Text  = dInfo.checkType;
-			tb_check_port.Text  = dInfo.checkPort.ToString();
-			cb_conn_type.Text	= dInfo.connType;
-			tb_conn_port.Text	= dInfo.connPort.ToString();
-
-			tb_desc.Text        = dInfo.desc;
-			*/
 		}
 
 		private void bt_scan_Click(object sender, EventArgs e)
@@ -578,6 +632,72 @@ namespace AnyBoBu.dialog
 				case 2:
 					ScanArrayOids("PoeStatus", lv_poe_status);
 					break;
+			}
+		}
+
+		private void mtb_sys_addr_KeyPress(object sender, KeyPressEventArgs e) {
+			if (char.IsControl(e.KeyChar)) {
+				return;
+			}
+
+			// 숫자와 마침표만 허용
+			if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.') {
+				e.Handled = true;
+				return;
+			}
+
+			var textBox = sender as TextBoxBase;
+			if (textBox == null) return;
+
+			string currentText = textBox.Text;
+			int selStart = textBox.SelectionStart;
+			int selLen = textBox.SelectionLength;
+
+			string newText = currentText.Remove(selStart, selLen).Insert(selStart, e.KeyChar.ToString());
+
+			// 마침표 최대 3개 허용
+			if (newText.Count(c => c == '.') > 3) {
+				e.Handled = true;
+				return;
+			}
+
+			// 마침표 연속 입력 방지 (예: "..")
+			if (newText.Contains("..")) {
+				e.Handled = true;
+				return;
+			}
+
+			// 각 옥텟(마디) 검증: 최대 4마디, 마디당 최대 3자리, 값 0~255
+			string[] parts = newText.Split('.');
+			if (parts.Length > 4) {
+				e.Handled = true;
+				return;
+			}
+
+			foreach (string part in parts) {
+				if (part.Length > 3) {
+					e.Handled = true;
+					return;
+				}
+				if (int.TryParse(part, out int val)) {
+					if (val < 0 || val > 255) {
+						e.Handled = true;
+						return;
+					}
+				}
+			}
+		}
+
+		private void mtb_sys_addr_TextChanged(object sender, EventArgs e) {
+			var textBox = sender as TextBoxBase;
+			if (textBox == null) return;
+
+			// 숫자와 마침표 이외의 문자 자동 제거
+			string filtered = new string(textBox.Text.Where(c => char.IsDigit(c) || c == '.').ToArray());
+			if (filtered != textBox.Text) {
+				int sel = textBox.SelectionStart;
+				textBox.Text = filtered;
+				textBox.SelectionStart = Math.Max(0, sel - 1);
 			}
 		}
 

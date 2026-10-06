@@ -1,4 +1,4 @@
-﻿namespace WaveLinker {
+namespace WaveLinker {
 	partial class MainForm
 	{
 		/// <summary>
@@ -509,7 +509,7 @@
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			Name = "MainForm";
 			StartPosition = FormStartPosition.CenterScreen;
-			Text = "GTWave Linker";
+			Text = "GTWave Wireless 상태 정보";
 			FormClosed += MainForm_FormClosed;
 			Load += DailyForm_Load;
 			gb_device0.ResumeLayout(false);

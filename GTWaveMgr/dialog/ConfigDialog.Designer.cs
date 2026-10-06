@@ -1,4 +1,4 @@
-﻿namespace AnyBoBu.dialog
+namespace AnyBoBu.dialog
 {
     partial class ConfigDialog
     {
@@ -92,7 +92,7 @@
 			// 
 			// bt_default
 			// 
-			this.bt_default.Location = new System.Drawing.Point(15, 554);
+			this.bt_default.Location = new System.Drawing.Point(15, 488);
 			this.bt_default.Name = "bt_default";
 			this.bt_default.Size = new System.Drawing.Size(114, 30);
 			this.bt_default.TabIndex = 8;
@@ -185,7 +185,7 @@
 			this.nud_sys_timeout.TabIndex = 3;
 			this.nud_sys_timeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.nud_sys_timeout.Value = new decimal(new int[] {
-            500,
+            1000,
             0,
             0,
             0});
@@ -221,14 +221,6 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.bt_color_line_2_2);
-			this.groupBox2.Controls.Add(this.bt_color_line_2_1);
-			this.groupBox2.Controls.Add(this.bt_color_line_1_2);
-			this.groupBox2.Controls.Add(this.bt_color_line_1_1);
-			this.groupBox2.Controls.Add(this.bt_color_cus_2);
-			this.groupBox2.Controls.Add(this.bt_color_cus_1);
-			this.groupBox2.Controls.Add(this.label17);
-			this.groupBox2.Controls.Add(this.label18);
 			this.groupBox2.Controls.Add(this.tb_color_back_2_1);
 			this.groupBox2.Controls.Add(this.tb_color_back_2_2);
 			this.groupBox2.Controls.Add(this.label12);
@@ -238,12 +230,11 @@
 			this.groupBox2.Controls.Add(this.tb_color_back_1_2);
 			this.groupBox2.Controls.Add(this.label11);
 			this.groupBox2.Controls.Add(this.label13);
-			this.groupBox2.Controls.Add(this.label15);
 			this.groupBox2.Controls.Add(this.label16);
 			this.groupBox2.Controls.Add(this.nud_color_time_1);
 			this.groupBox2.Location = new System.Drawing.Point(15, 121);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(406, 152);
+			this.groupBox2.Size = new System.Drawing.Size(406, 86);
 			this.groupBox2.TabIndex = 150;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "시스템 표시 색 지정";
@@ -327,7 +318,7 @@
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(91, 12);
 			this.label14.TabIndex = 147;
-			this.label14.Text = "(초) <=Timeout";
+			this.label14.Text = "(초) >=Timeout";
 			// 
 			// nud_color_time_2
 			// 
@@ -402,14 +393,14 @@
 			this.nud_color_time_1.TabIndex = 0;
 			this.nud_color_time_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.nud_color_time_1.Value = new decimal(new int[] {
-            5,
+            0,
             0,
             0,
             0});
 			// 
 			// bt_save_ok
 			// 
-			this.bt_save_ok.Location = new System.Drawing.Point(162, 554);
+			this.bt_save_ok.Location = new System.Drawing.Point(162, 488);
 			this.bt_save_ok.Name = "bt_save_ok";
 			this.bt_save_ok.Size = new System.Drawing.Size(114, 30);
 			this.bt_save_ok.TabIndex = 151;
@@ -419,7 +410,7 @@
 			// 
 			// bt_close
 			// 
-			this.bt_close.Location = new System.Drawing.Point(307, 554);
+			this.bt_close.Location = new System.Drawing.Point(307, 488);
 			this.bt_close.Name = "bt_close";
 			this.bt_close.Size = new System.Drawing.Size(114, 30);
 			this.bt_close.TabIndex = 152;
@@ -439,7 +430,7 @@
 			this.groupBox3.Controls.Add(this.cb_file_auto);
 			this.groupBox3.Controls.Add(this.bt_file_select);
 			this.groupBox3.Controls.Add(this.label23);
-			this.groupBox3.Location = new System.Drawing.Point(15, 279);
+			this.groupBox3.Location = new System.Drawing.Point(15, 213);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(406, 161);
 			this.groupBox3.TabIndex = 153;
@@ -489,6 +480,7 @@
 			this.bt_log_select.TabIndex = 149;
 			this.bt_log_select.Text = "...";
 			this.bt_log_select.UseVisualStyleBackColor = true;
+			this.bt_log_select.Click += new System.EventHandler(this.bt_log_select_Click);
 			// 
 			// label3
 			// 
@@ -524,6 +516,7 @@
 			this.bt_file_select.TabIndex = 145;
 			this.bt_file_select.Text = "...";
 			this.bt_file_select.UseVisualStyleBackColor = true;
+			this.bt_file_select.Click += new System.EventHandler(this.bt_file_select_Click);
 			// 
 			// label23
 			// 
@@ -540,7 +533,7 @@
 			this.groupBox4.Controls.Add(this.cb_error_sound);
 			this.groupBox4.Controls.Add(this.cb_error_window);
 			this.groupBox4.Controls.Add(this.label2);
-			this.groupBox4.Location = new System.Drawing.Point(15, 460);
+			this.groupBox4.Location = new System.Drawing.Point(15, 394);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(406, 77);
 			this.groupBox4.TabIndex = 154;
@@ -555,7 +548,7 @@
 			this.nud_erro_auto_close.TabIndex = 151;
 			this.nud_erro_auto_close.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.nud_erro_auto_close.Value = new decimal(new int[] {
-            5,
+            3,
             0,
             0,
             0});
@@ -623,7 +616,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(433, 604);
+			this.ClientSize = new System.Drawing.Size(433, 538);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.bt_close);
@@ -635,7 +628,7 @@
 			this.MinimizeBox = false;
 			this.Name = "ConfigDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "그룹 정보 창";
+			this.Text = "환경설정";
 			this.Load += new System.EventHandler(this.ConfigDialog_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();

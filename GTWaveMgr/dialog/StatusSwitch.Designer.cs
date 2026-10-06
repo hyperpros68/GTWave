@@ -1,4 +1,4 @@
-﻿namespace AnyBoBu.dialog {
+namespace AnyBoBu.dialog {
 	partial class StatusSwitch {
 		/// <summary>
 		/// Required designer variable.
@@ -28,8 +28,7 @@
 			this.bt_scan = new System.Windows.Forms.Button();
 			this.bt_close = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.lv_net_1 = new System.Windows.Forms.ListView();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.pnl_ports = new System.Windows.Forms.Panel();
 			this.label7 = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
 			this.label6 = new System.Windows.Forms.Label();
@@ -159,7 +158,7 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.lv_net_1);
+			this.groupBox1.Controls.Add(this.pnl_ports);
 			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.button3);
 			this.groupBox1.Controls.Add(this.label6);
@@ -173,29 +172,16 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Port 상태";
 			// 
-			// lv_net_1
+			// pnl_ports
 			// 
-			this.lv_net_1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.pnl_ports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.lv_net_1.GridLines = true;
-			this.lv_net_1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-			this.lv_net_1.HideSelection = false;
-			this.lv_net_1.Location = new System.Drawing.Point(186, 14);
-			this.lv_net_1.Name = "lv_net_1";
-			this.lv_net_1.OwnerDraw = true;
-			this.lv_net_1.Size = new System.Drawing.Size(402, 83);
-			this.lv_net_1.SmallImageList = this.imageList1;
-			this.lv_net_1.TabIndex = 171;
-			this.lv_net_1.TileSize = new System.Drawing.Size(38, 34);
-			this.lv_net_1.UseCompatibleStateImageBehavior = false;
-			this.lv_net_1.View = System.Windows.Forms.View.Tile;
-			this.lv_net_1.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lv_net_1_DrawItem);
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "LinkDown.png");
+			this.pnl_ports.AutoScroll = true;
+			this.pnl_ports.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pnl_ports.Location = new System.Drawing.Point(186, 14);
+			this.pnl_ports.Name = "pnl_ports";
+			this.pnl_ports.Size = new System.Drawing.Size(402, 83);
+			this.pnl_ports.TabIndex = 171;
 			// 
 			// label7
 			// 
@@ -244,7 +230,7 @@
 			// 
 			// button1
 			// 
-			this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+			this.button1.BackColor = System.Drawing.Color.Green;
 			this.button1.Location = new System.Drawing.Point(19, 20);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(23, 23);
@@ -962,7 +948,6 @@
 			// mtb_sys_addr
 			// 
 			this.mtb_sys_addr.Location = new System.Drawing.Point(118, 46);
-			this.mtb_sys_addr.Mask = "###.###.###.###";
 			this.mtb_sys_addr.Name = "mtb_sys_addr";
 			this.mtb_sys_addr.Size = new System.Drawing.Size(109, 21);
 			this.mtb_sys_addr.TabIndex = 157;
@@ -1073,7 +1058,7 @@
 			this.MinimizeBox = false;
 			this.Name = "StatusSwitch";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "PoE 스위치 상태정보 창";
+			this.Text = "스위치 상태 정보";
 			this.Load += new System.EventHandler(this.StatusSwitch_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -1101,8 +1086,7 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.ListView lv_net_1;
-		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.Panel pnl_ports;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;

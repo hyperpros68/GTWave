@@ -46,17 +46,67 @@ namespace HyperBase
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			Global.Init();
-			Global.mMainForm = new MainFormV1();
+			// 전역 미처리 예외 핸들러 등록
+			Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+			Application.ThreadException += (sender, args) => {
+				LogUtil.LogException("CRASH_THREAD", args.Exception, "UI Thread Exception");
+				try {
+					MessageBox.Show("오류가 발생했습니다: " + args.Exception.Message + "\r\n로그 폴더: " + LogUtil.GetLogDirectory(), "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				} catch { }
+			};
+			AppDomain.CurrentDomain.UnhandledException += (sender, args) => {
+				Exception ex = args.ExceptionObject as Exception;
+				LogUtil.LogException("CRASH_DOMAIN", ex, "AppDomain Unhandled Exception");
+				try {
+					MessageBox.Show("치명적인 오류가 발생했습니다: " + (ex != null ? ex.Message : "알 수 없는 오류") + "\r\n로그 폴더: " + LogUtil.GetLogDirectory(), "치명적 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				} catch { }
+			};
+			TaskScheduler.UnobservedTaskException += (sender, args) => {
+				LogUtil.LogException("CRASH_TASK", args.Exception, "Task Unobserved Exception");
+				args.SetObserved();
+			};
 
-			using (LoginForm login = new LoginForm())
+			LogUtil.LogI("MAIN", "==================================================");
+			LogUtil.LogI("MAIN", $"GTWaveMgr Starting... Version: {Const.mVersion}");
+			LogUtil.LogI("MAIN", $"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
+			LogUtil.LogI("MAIN", $"LogDirectory: {LogUtil.GetLogDirectory()}");
+			LogUtil.LogI("MAIN", "==================================================");
+
+			try
 			{
-				if (login.ShowDialog() == DialogResult.OK)
-				{
-					Global.mMainForm.mUserInfo = login.LoggedUserInfo;
-					Application.Run(Global.mMainForm);
+				LogUtil.LogI("MAIN", "Initializing Global settings...");
+				Global.Init();
+				LogUtil.LogI("MAIN", "Global.Init() completed successfully.");
 
+				LogUtil.LogI("MAIN", "Creating MainFormV1 instance...");
+				Global.mMainForm = new MainFormV1();
+				LogUtil.LogI("MAIN", "MainFormV1 instance created successfully.");
+
+				LogUtil.LogI("MAIN", "Opening LoginForm...");
+				using (LoginForm login = new LoginForm())
+				{
+					DialogResult dr = login.ShowDialog();
+					LogUtil.LogI("MAIN", $"LoginForm result: {dr}");
+					if (dr == DialogResult.OK)
+					{
+						Global.mMainForm.mUserInfo = login.LoggedUserInfo;
+						LogUtil.LogI("MAIN", $"Logged in user: {(login.LoggedUserInfo != null ? login.LoggedUserInfo.mMemId : "null")}");
+						LogUtil.LogI("MAIN", "Starting Application.Run(Global.mMainForm)...");
+						Application.Run(Global.mMainForm);
+						LogUtil.LogI("MAIN", "Application.Run finished cleanly.");
+					}
+					else
+					{
+						LogUtil.LogI("MAIN", "Login cancelled or closed.");
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				LogUtil.LogException("MAIN", ex, "Fatal error in Main()");
+				try {
+					MessageBox.Show("프로그램 실행 중 오류가 발생했습니다:\r\n" + ex.Message + "\r\n\r\n상세 내용은 로그 파일을 확인하세요:\r\n" + LogUtil.GetLogDirectory(), "실행 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				} catch { }
 			}
 		}
 
@@ -196,38 +246,86 @@ namespace HyperBase
 		// ----------------------- Config 
 		public	static	ConfigInfo		mConfigInfo = new ConfigInfo();
 
-		public static	void	Init() {
+		private static void InitDatabase() {
+			string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GTWave.db");
+			LogUtil.LogI("INIT", $"Initializing LiteDB at: {dbPath}");
 
-			mLDB = new LiteDatabase("./GTWave.db");
-			GlobalHelpers.Init(mLDB);
-
+			bool isSuccess = false;
 			try
 			{
-				if (GlobalHelpers.mUserTb.Query().Where(x => x.mMemId.Equals("admin")).Count() == 0)
-				{
-					GlobalHelpers.mUserTb.Insert(new UserInfo
-					{
-						mMemId = "admin",
-						mMemPw = "",
-						mMemNm = "Administrator",
-						mLevel = "관리자"
-					});
-				}
-				if (GlobalHelpers.mUserTb.Query().Where(x => x.mMemId.Equals("test")).Count() == 0)
-				{
-					GlobalHelpers.mUserTb.Insert(new UserInfo
-					{
-						mMemId = "test",
-						mMemPw = "",
-						mMemNm = "Test User",
-						mLevel = "사용자"
-					});
-				}
+				mLDB = new LiteDatabase(dbPath);
+				GlobalHelpers.Init(mLDB);
+
+				// 무결성 검증 쿼리 실행
+				var count = GlobalHelpers.mUserTb.Query().Count();
+				isSuccess = true;
+				LogUtil.LogI("INIT", $"LiteDB initialized and verified successfully. User count: {count}");
 			}
 			catch (Exception ex)
 			{
-				System.Diagnostics.Debug.WriteLine("DB Init Error: " + ex.Message);
+				LogUtil.LogException("INIT", ex, "LiteDB verification failed, attempting recovery...");
+				try { if (mLDB != null) { mLDB.Dispose(); mLDB = null; } } catch { }
+
+				// 손상되었거나 호환되지 않는 이전 DB 파일 백업 후 새 DB로 재생성
+				try
+				{
+					if (File.Exists(dbPath))
+					{
+						string bakPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"GTWave_corrupted_{DateTime.Now:yyyyMMddHHmmss}.bak");
+						File.Move(dbPath, bakPath);
+						LogUtil.LogW("INIT", $"Corrupted DB moved to backup: {bakPath}");
+					}
+
+					mLDB = new LiteDatabase(dbPath);
+					GlobalHelpers.Init(mLDB);
+					isSuccess = true;
+					LogUtil.LogI("INIT", "LiteDB re-created and initialized successfully.");
+				}
+				catch (Exception reEx)
+				{
+					LogUtil.LogException("INIT", reEx, "LiteDB recreation failed");
+				}
 			}
+
+			if (isSuccess && GlobalHelpers.mUserTb != null)
+			{
+				try
+				{
+					if (GlobalHelpers.mUserTb.Query().Where(x => x.mMemId.Equals("admin")).Count() == 0)
+					{
+						GlobalHelpers.mUserTb.Insert(new UserInfo
+						{
+							mMemId = "admin",
+							mMemPw = "",
+							mMemNm = "Administrator",
+							mLevel = "관리자"
+						});
+						LogUtil.LogI("INIT", "Default 'admin' user created.");
+					}
+					if (GlobalHelpers.mUserTb.Query().Where(x => x.mMemId.Equals("test")).Count() == 0)
+					{
+						GlobalHelpers.mUserTb.Insert(new UserInfo
+						{
+							mMemId = "test",
+							mMemPw = "",
+							mMemNm = "Test User",
+							mLevel = "사용자"
+						});
+						LogUtil.LogI("INIT", "Default 'test' user created.");
+					}
+				}
+				catch (Exception userEx)
+				{
+					LogUtil.LogException("INIT", userEx, "Default user creation error");
+				}
+			}
+		}
+
+		public static	void	Init() {
+			mAppPath = AppDomain.CurrentDomain.BaseDirectory;
+			LogUtil.LogI("INIT", $"mAppPath initialized: {mAppPath}");
+
+			InitDatabase();
 
 			try
 			{
@@ -245,6 +343,7 @@ namespace HyperBase
 					if (File.Exists(path))
 					{
 						mAppIcon = new Icon(path);
+						LogUtil.LogI("INIT", $"Loaded icon from: {path}");
 						break;
 					}
 				}
@@ -254,172 +353,91 @@ namespace HyperBase
 					mAppIcon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
 				}
 			}
-			catch
+			catch (Exception ex)
 			{
+				LogUtil.LogException("INIT", ex, "Icon load failed");
 				try { mAppIcon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath); } catch { }
 			}
 
-			/*
-			UserInfo uInfo = new UserInfo();
-			uInfo.mMemNm = "Test UserInfo";
-			GlobalHelpers.mUserTb.Insert(uInfo);
-			var result0 = GlobalHelpers.mUserTb.Query()
-							.Where(p => p.mMemNm.Equals("Test"))
-							//.OrderBy(p => p.prevIdx)
-							//.GroupBy()
-							.ToList();
-			//var results = GlobalHelpers.mGroupTb.FindAll();
-			foreach (UserInfo group in result0) {
-				Debug.WriteLine(group.mMemNm);
-			}
+			try
+			{
+				string iniFullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Const.gIniFile));
+				LogUtil.LogI("INIT", $"Reading INI config: {iniFullPath} (Exists: {File.Exists(iniFullPath)})");
 
+				StringBuilder str_temp = new StringBuilder();
+				GetPrivateProfileString("System", "DeviceID", "", str_temp, 1000, Const.gIniFile);
+				mDeviceID = str_temp.ToString();
 
-			// Create your new customer instance
-			var customer = new GroupInfo {
-					site = "John Doe",
-					//Phones = new string[] { "8000-0000", "9000-0000" },
-					IsActive = true
-				};
+				// ----------------------------------------------------------
+				// 로그 관련
+				// ----------------------------------------------------------
+				GetPrivateProfileString("Log", "Path", "", str_temp, 1000, Const.gIniFile);
+				string iniLogPath = str_temp.ToString().Trim();
+				if (!string.IsNullOrEmpty(iniLogPath))
+				{
+					LogUtil.mLogPath = iniLogPath;
+				}
+				LogUtil.EnsureLogDirectoryExists();
 
-			// Insert new customer document (Id will be auto-incremented)
-			GlobalHelpers.mGroupTb.Insert(customer);
+				LogUtil.mLevelW		= (int)GetPrivateProfileInt("Log", "Level_W", 0, Const.gIniFile);
+				LogUtil.mLevelD		= (int)GetPrivateProfileInt("Log", "Level_D", 0, Const.gIniFile);
+				LogUtil.mLevelN		= (int)GetPrivateProfileInt("Log", "Level_N", 0, Const.gIniFile);
+				LogUtil.LogI("INIT", $"Log settings -> Path: '{LogUtil.mLogPath}' ({LogUtil.GetLogDirectory()}), Level_W: {LogUtil.mLevelW}, Level_D: {LogUtil.mLevelD}, Level_N: {LogUtil.mLevelN}");
+				// ----------------------------------------------------------
 
-				// Update a document inside a collection
-			customer.site = "Jane Doe";
+				// ----------------------------------------------------------
+				// Network 관련
+				// ----------------------------------------------------------
+				NetServer.mAliveTime	= (int)GetPrivateProfileInt("Network", "AliveMode", 0, Const.gIniFile);
+				if (NetServer.mAliveTime == 1)	NetServer.mAliveMode	= true;
+				
+				NetServer.mAliveTime	= (int)GetPrivateProfileInt("Network", "AliveTime"	, 10000, Const.gIniFile);
+				NetServer.mReadTimeout	= (int)GetPrivateProfileInt("Network", "ReadTimeout",     0, Const.gIniFile);
+				// ----------------------------------------------------------
 
-			GlobalHelpers.mGroupTb.Update(customer);
+				// Service 정리
+				// ----------------------------------------------------------
+				GetPrivateProfileString("Service", "names", "", str_temp, 1000, Const.gIniFile);
+				string  services	= str_temp.ToString();
 
-			// Index document using document Name property
-			GlobalHelpers.mGroupTb.EnsureIndex(x => x.site);
+				foreach(string service in services.Split(','))
+				{
+					var name = service.Trim();
+					if (name.Length > 0) {
+						ServiceInfo info = new	ServiceInfo(name);
+						GetPrivateProfileString(name, "Enable", "false", str_temp, 1000, Const.gIniFile);
+						string enable = str_temp.ToString();
+						if ("true".Equals(enable))	info.mEnable = true;
+						else info.mEnable = false;
 
-			// Use LINQ to query documents (filter, sort, transform)
-			var results = GlobalHelpers.mGroupTb.Query()
-				.Where(x => x.site.StartsWith("J"))
-				.OrderBy(x => x.site)
-				.Select(x => new { x.site, NameUpper = x.site.ToUpper() })
-				.Limit(10)
-				.ToList();
+						GetPrivateProfileString(name, "CfgFile", "", str_temp, 1000, Const.gIniFile);
+						info.mCfgFile = str_temp.ToString();
+						GetPrivateProfileString(name, "SvrAddr", "localhost", str_temp, 1000, Const.gIniFile);
+						info.mCfgFile = str_temp.ToString();
 
-			foreach (var group in results) {
-				Debug.WriteLine(group.site);
-			}
-			*/
-			// Let's create an index in phone numbers (using expression). It's a multikey index
-			//GlobalHelpers.mGroupTb.EnsureIndex(x => x.phones);
+						info.mSvrPort = (int)GetPrivateProfileInt(name, "SvrPort", 0, Const.gIniFile);
 
-			// and now we can query phones
-			//var r = GlobalHelpers.mGroupTb.FindOne(x => x.phones.Contains("8888-5555"));
-			//}
-
-			// Data insert and update and delete
-			GroupInfo gInfo = new GroupInfo("Test");
-			GlobalHelpers.mGroupTb.Insert(gInfo);
-			
-			//foreach (var person in GlobalHelpers.mGroupTb.FindAll()) {
-			// do something
-			//Debug.WriteLine(person.site);
-			//}
-
-			/*
-			var result1 = GlobalHelpers.mGroupTb.Query()
-							.Where(p => p.groupIdx == 0)
-							//.OrderBy(p => p.prevIdx)
-							//.GroupBy()
-							.ToList();
-			//var results = GlobalHelpers.mGroupTb.FindAll();
-			foreach (GroupInfo group in result1) {
-				Debug.WriteLine(group.name);
-			}
-			*/
-
-			StringBuilder str_temp = new StringBuilder();
-            GetPrivateProfileString("System", "DeviceID", "", str_temp, 1000, Const.gIniFile);
-            mDeviceID = str_temp.ToString();
-
-            // ----------------------------------------------------------
-            // 로그 관련
-            // ----------------------------------------------------------
-            GetPrivateProfileString("Log", "Path", "", str_temp, 1000, Const.gIniFile);
-			LogUtil.mLogPath	= str_temp.ToString();
-
-			LogUtil.mLevelW		= (int)GetPrivateProfileInt("Log", "Level_W", 0, Const.gIniFile);
-			LogUtil.mLevelD		= (int)GetPrivateProfileInt("Log", "Level_D", 0, Const.gIniFile);
-			LogUtil.mLevelN		= (int)GetPrivateProfileInt("Log", "Level_N", 0, Const.gIniFile);
-			// ----------------------------------------------------------
-
-			// ----------------------------------------------------------
-			// Network 관련
-			// ----------------------------------------------------------
-			NetServer.mAliveTime	= (int)GetPrivateProfileInt("Network", "AliveMode", 0, Const.gIniFile);
-			if (NetServer.mAliveTime == 1)	NetServer.mAliveMode	= true;
-			
-			NetServer.mAliveTime	= (int)GetPrivateProfileInt("Network", "AliveTime"	, 10000, Const.gIniFile);
-			NetServer.mReadTimeout	= (int)GetPrivateProfileInt("Network", "ReadTimeout",     0, Const.gIniFile);
-			// ----------------------------------------------------------
-
-
-			// ----------------------------------------------------------
-			// DB 관련
-			// ----------------------------------------------------------
-			/*
-			GetPrivateProfileString("System", "DBType", "MySQL", str_temp, 1000, Const.gIniFile);
-			string DBType = str_temp.ToString();
-
-			GetPrivateProfileString(DBType, "server", "localhost", str_temp, 1000, Const.gIniFile);
-			mMySQL._server	= str_temp.ToString();
-			mMySQL._port	= (int)GetPrivateProfileInt(DBType, "port", 3308, Const.gIniFile);
-
-			GetPrivateProfileString(DBType, "schema", "awool", str_temp, 1000, Const.gIniFile);
-			string schema	= str_temp.ToString();
-			GetPrivateProfileString(DBType, "id", "", str_temp, 1000, Const.gIniFile);
-			string id		= str_temp.ToString();
-			GetPrivateProfileString(DBType, "pw", "", str_temp, 1000, Const.gIniFile);
-			string pw = str_temp.ToString();
-			*/
-			//if (!mMySQL.Init(schema, id, pw)) {
-			//	Environment.Exit(1);
-			//}
-			// ----------------------------------------------------------
-
-
-
-
-
-			// Service 정리
-			// ----------------------------------------------------------
-			GetPrivateProfileString("Service", "names", "", str_temp, 1000, Const.gIniFile);
-			string  services	= str_temp.ToString();
-
-			services.Split(',');
-			foreach(string service in services.Split(','))
-            {
-				var name = service.Trim();
-				if (name.Length > 0) {
-					ServiceInfo info = new	ServiceInfo(name);
-					GetPrivateProfileString(name, "Enable", "false", str_temp, 1000, Const.gIniFile);
-					string enable = str_temp.ToString();
-					if ("true".Equals(enable))	info.mEnable = true;
-					else info.mEnable = false;
-
-					GetPrivateProfileString(name, "CfgFile", "", str_temp, 1000, Const.gIniFile);
-					info.mCfgFile = str_temp.ToString();
-					GetPrivateProfileString(name, "SvrAddr", "localhost", str_temp, 1000, Const.gIniFile);
-					info.mCfgFile = str_temp.ToString();
-
-					info.mSvrPort = (int)GetPrivateProfileInt(name, "SvrPort", 0, Const.gIniFile);
-
-					mServices.Add(info);
+						mServices.Add(info);
+					}
 				}
 			}
+			catch (Exception ex)
+			{
+				LogUtil.LogException("INIT", ex, "INI configuration read failed");
+			}
 
-
-			mAppPath = Path.GetDirectoryName(Application.ExecutablePath);
-
-            //run the program again and close this one
-			Console.WriteLine(System.Environment.GetCommandLineArgs()[0]);
-			
-			mConfigInfo		= new ConfigInfo();
-			mConfigInfo.Load(Const.gCfgFile);
+			try
+			{
+				string cfgFullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Const.gCfgFile));
+				LogUtil.LogI("INIT", $"Loading CFG config: {cfgFullPath} (Exists: {File.Exists(cfgFullPath)})");
+				mConfigInfo = new ConfigInfo();
+				mConfigInfo.Load(Const.gCfgFile);
+				LogUtil.LogI("INIT", "ConfigInfo loaded successfully.");
+			}
+			catch (Exception ex)
+			{
+				LogUtil.LogException("INIT", ex, "CFG configuration load failed");
+			}
 
 			// --------------- start Socket Server
 		}

@@ -33,7 +33,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>C:\GTWave\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -292,6 +292,8 @@
     <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
@@ -375,11 +377,32 @@
     <Compile Include="dialog\CrawlOptionDialog.Designer.cs">
       <DependentUpon>CrawlOptionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="dialog\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialog\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="dialog\ConfigDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dialog\ConfigDialog.Designer.cs">
       <DependentUpon>ConfigDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dialog\ErrorPopupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialog\ErrorPopupDialog.Designer.cs">
+      <DependentUpon>ErrorPopupDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dialog\NetworkErrorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialog\NetworkConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialog\NetworkConfigDialog.Designer.cs">
+      <DependentUpon>NetworkConfigDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="dialog\OidListDialog.cs">
       <SubType>Form</SubType>
@@ -587,6 +610,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="utils\DateUtil.cs" />
+    <Compile Include="utils\DiagramPackageUtil.cs" />
     <Compile Include="utils\ExcelUtil.cs" />
     <Compile Include="utils\HashUtil.cs" />
     <Compile Include="utils\HexDump.cs" />
@@ -618,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dialog\ConfigDialog.resx">
       <DependentUpon>ConfigDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialog\ErrorPopupDialog.resx">
+      <DependentUpon>ErrorPopupDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dialog\OidListDialog.resx">
       <DependentUpon>OidListDialog.cs</DependentUpon>
@@ -743,6 +770,36 @@
     <Content Include="Resources\finder_btn.png" />
     <Content Include="Resources\diagram_btn.png" />
     <Content Include="Resources\full_screen.png" />
+    <EmbeddedResource Include="Resources\toolbar\01_fullscreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\02_device_search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\03_device_add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\04_device_edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\05_device_delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\06_diagram_lock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\07_monitor_start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\08_monitor_stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\09_report_print.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toolbar\10_settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Scripts\MindFusion.Charting.js" />
     <Content Include="Scripts\MindFusion.Common.js" />
     <Content Include="Scripts\MindFusion.Diagramming.js" />

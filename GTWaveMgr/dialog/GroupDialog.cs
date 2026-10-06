@@ -106,6 +106,7 @@ namespace AnyBoBu.dialog
 					if (mForm != null) {
 						string newPath = mForm.GetNodePath(gInfo.node);
 						mForm.UpdateGroupPath(oldPath, newPath);
+						tView.Sort();
 						mForm.SaveTree(tView, "group.mvia");
 					}
 				}
@@ -162,6 +163,7 @@ namespace AnyBoBu.dialog
                 Close();
             } else Close();
             */
+			tView.Sort();
 			if (mForm != null) {
 				mForm.SaveTree(tView, "group.mvia");
 			}

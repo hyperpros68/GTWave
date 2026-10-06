@@ -40,13 +40,16 @@ namespace AnyBoBu.dialog
 			cb_system_kind.Items.Clear();
 			var results = GlobalHelpers.mSystemTb.Query()
 				//.Where(x => x.groupName.Equals(group_name))
-				.OrderBy(x => x.name)
+				.OrderBy(x => x.id)
 				//.Select(x => new { x.site, NameUpper = x.site.ToUpper() })
 				//.Limit(10)
 				.ToList();
 
+			ComboboxItem defaultItem = null;
 			foreach (var system in results) {
-				//Debug.WriteLine(system.name);
+				if (string.IsNullOrWhiteSpace(system.name)) {
+					continue;
+				}
 
 				ComboboxItem item = new ComboboxItem();
 				item.Text	= system.name;
@@ -54,11 +57,34 @@ namespace AnyBoBu.dialog
 				//cb_system_kind.Items.Add(system.name);
 				cb_system_kind.Items.Add(item);
 				//user.dispListView(lv_user_list);
+
+				if (system.id == 0 && defaultItem == null) {
+					defaultItem = item;
+				}
 			}
 
-			cb_system_kind.SelectedIndex = 0;
+			if (defaultItem != null) {
+				cb_system_kind.SelectedItem = defaultItem;
+			} else if (cb_system_kind.Items.Count > 0) {
+				cb_system_kind.SelectedIndex = 0;
+			}
 			cb_check_type.SelectedIndex = 0;
 			cb_conn_type.SelectedIndex = 0;
+
+			// 그룹 콤보박스 채우기
+			cb_group_nm.Items.Clear();
+			if (mForm != null) {
+				List<string> groupPaths = new List<string>();
+				mForm.CollectGroupPaths(mForm.tv_group.Nodes, groupPaths);
+				foreach (var path in groupPaths) {
+					cb_group_nm.Items.Add(path);
+				}
+			} else {
+				// mForm이 null인 경우 현재 그룹명만 추가 (fallback)
+				if (!string.IsNullOrEmpty(dInfo.groupNm)) {
+					cb_group_nm.Items.Add(dInfo.groupNm);
+				}
+			}
 
 			if (dInfo.id == -1) {
 				bt_switch_status.Visible = false;
@@ -92,11 +118,33 @@ namespace AnyBoBu.dialog
 		*/
 
 		public  void    DispInfo() {
-			if (string.IsNullOrEmpty(dInfo.type)) {
-				dInfo.type	= cb_system_kind.Text;
+			int matchIndex = -1;
+			if (!string.IsNullOrEmpty(dInfo.type)) {
+				for (int i = 0; i < cb_system_kind.Items.Count; i++) {
+					ComboboxItem cItem = cb_system_kind.Items[i] as ComboboxItem;
+					string itemText = cItem != null ? cItem.Text : cb_system_kind.Items[i].ToString();
+					if (string.Equals(itemText, dInfo.type, StringComparison.OrdinalIgnoreCase)) {
+						matchIndex = i;
+						break;
+					}
+				}
 			}
+
+			if (matchIndex >= 0) {
+				cb_system_kind.SelectedIndex = matchIndex;
+			} else if (cb_system_kind.Items.Count > 0) {
+				cb_system_kind.SelectedIndex = 0;
+			}
+
+			ComboboxItem selItem = cb_system_kind.SelectedItem as ComboboxItem;
+			dInfo.type = selItem != null ? selItem.Text : (cb_system_kind.SelectedItem != null ? cb_system_kind.SelectedItem.ToString() : cb_system_kind.Text);
 			cb_system_kind.Text	= dInfo.type;
-			tb_group_nm.Text	= $"{dInfo.groupNm.Replace("|", " -> ")}";
+			// 그룹명 콤보박스: 내부 저장값(|)으로 항목 선택
+			if (cb_group_nm.Items.Contains(dInfo.groupNm)) {
+				cb_group_nm.SelectedItem = dInfo.groupNm;
+			} else if (cb_group_nm.Items.Count > 0) {
+				cb_group_nm.SelectedIndex = 0;
+			}
 			tb_device_nm.Text   = dInfo.name;
 			cb_is_dumy.Checked	= dInfo.isDumy;
 			if (cb_is_dumy.Checked) {
@@ -108,13 +156,17 @@ namespace AnyBoBu.dialog
 			tb_addr.Text		= dInfo.addr;
 			cb_check_type.Text  = dInfo.checkType;
 			tb_check_port.Text  = dInfo.checkPort.ToString();
+			if (string.IsNullOrEmpty(dInfo.connType)) {
+				dInfo.connType = "http";
+			}
 			cb_conn_type.Text	= dInfo.connType;
 			tb_conn_port.Text	= dInfo.connPort.ToString();
-			cb_is_snmp.Checked	= dInfo.isSnmp;
-			if (cb_is_snmp.Checked) {
-				bt_set_snmp.Enabled = true;
-			} else {
+			if ("JSON".Equals(dInfo.protocolType, StringComparison.OrdinalIgnoreCase)) {
+				rb_json.Checked = true;
 				bt_set_snmp.Enabled = false;
+			} else {
+				rb_snmp.Checked = true;
+				bt_set_snmp.Enabled = true;
 			}
 
 			tb_desc.Text        = dInfo.desc;
@@ -127,10 +179,18 @@ namespace AnyBoBu.dialog
 				return;
 			}
 
+			if (cb_group_nm.SelectedItem == null) {
+				MessageBox.Show("그룹을 선택해 주세요.", "알림창");
+				return;
+			}
+
+			// 콤보박스에서 선택된 그룹 경로 (내부 저장값 그대로 사용)
+			string selectedGroupNm = cb_group_nm.SelectedItem.ToString();
+
 			// 중복체크
 			if ("add".Equals(mViewMode)) {
 				var results = GlobalHelpers.mDeviceTb.Query()
-					.Where(x => x.groupNm.Equals(dInfo.groupNm) && x.name.Equals(tb_device_nm.Text))
+					.Where(x => x.groupNm.Equals(selectedGroupNm) && x.name.Equals(tb_device_nm.Text))
 					.OrderBy(x => x.name)
 					.ToList();
 
@@ -141,7 +201,7 @@ namespace AnyBoBu.dialog
 
 				DeviceInfo info = new DeviceInfo(0);
 				info.type		= cb_system_kind.Text;
-				info.groupNm	= dInfo.groupNm; // [수정] UI 텍스트(->) 대신 원본 데이터(|) 사용
+				info.groupNm	= selectedGroupNm;
 				info.name		= tb_device_nm.Text;
 				info.isDumy		= cb_is_dumy.Checked;
 				info.addr		= tb_addr.Text;
@@ -150,7 +210,8 @@ namespace AnyBoBu.dialog
 				info.connType	= cb_conn_type.Text;
 				info.connPort	= Int32.Parse(tb_conn_port.Text);
 				info.desc		= tb_desc.Text;
-				info.isSnmp		= cb_is_snmp.Checked;
+				info.isSnmp		= rb_snmp.Checked;
+				info.protocolType = rb_json.Checked ? "JSON" : "SNMP";
 
 				GlobalHelpers.mDeviceTb.Insert(info);
 
@@ -161,7 +222,7 @@ namespace AnyBoBu.dialog
 			} else if ("fix".Equals(mViewMode)) {
 
 				var results = GlobalHelpers.mDeviceTb.Query()
-					.Where(x => x.groupNm.Equals(dInfo.groupNm) && x.name.Equals(tb_device_nm.Text))
+					.Where(x => x.groupNm.Equals(selectedGroupNm) && x.name.Equals(tb_device_nm.Text))
 					.OrderBy(x => x.name)
 					.ToList();
 
@@ -173,7 +234,7 @@ namespace AnyBoBu.dialog
 				DeviceInfo oInfo = dInfo.Clone();
 
 				dInfo.type		= cb_system_kind.Text;
-				// dInfo.groupNm 는 수정하지 않음 (UI에서 -> 로 표시된 값을 가져오면 안됨)
+				dInfo.groupNm	= selectedGroupNm; // 콤보박스에서 선택된 그룹으로 변경
 				dInfo.name		= tb_device_nm.Text;
 				dInfo.isDumy	= cb_is_dumy.Checked;
 				dInfo.addr		= tb_addr.Text;
@@ -181,7 +242,8 @@ namespace AnyBoBu.dialog
 				dInfo.checkPort = Int32.Parse(tb_check_port.Text);
 				dInfo.connType	= cb_conn_type.Text;
 				dInfo.connPort	= Int32.Parse(tb_conn_port.Text);
-				dInfo.isSnmp	= cb_is_snmp.Checked;
+				dInfo.isSnmp	= rb_snmp.Checked;
+				dInfo.protocolType = rb_json.Checked ? "JSON" : "SNMP";
 				dInfo.desc		= tb_desc.Text;
 
 				GlobalHelpers.mDeviceTb.Update(dInfo);
@@ -233,9 +295,8 @@ namespace AnyBoBu.dialog
 			setDialog.ShowDialog();
 		}
 
-		private void	cb_is_snmp_CheckedChanged(object sender, EventArgs e) {
-			System.Windows.Forms.CheckBox checkBox = (System.Windows.Forms.CheckBox)sender;
-			if (checkBox.Checked) {
+		private void	rb_snmp_CheckedChanged(object sender, EventArgs e) {
+			if (rb_snmp.Checked) {
 				bt_set_snmp.Enabled = true;
 			} else {
 				bt_set_snmp.Enabled = false;
@@ -262,46 +323,64 @@ namespace AnyBoBu.dialog
 		private void	cb_system_kind_SelectedIndexChanged(object sender, EventArgs e) {
 			System.Windows.Forms.ComboBox comboBox = (System.Windows.Forms.ComboBox)sender;
 
-			SystemInfo selected = (SystemInfo)((ComboboxItem)comboBox.SelectedItem).Value;
-			try {
-				pb_system_image.Image = System.Drawing.Image.FromFile(selected.imagePath);
-			} catch (Exception ex) {
-			}
+			if (comboBox.SelectedItem is ComboboxItem item && item.Value is SystemInfo selected) {
+				try {
+					pb_system_image.Image = System.Drawing.Image.FromFile(selected.imagePath);
+				} catch (Exception) {
+				}
 
-			int type = selected.GetType();
-			switch(type) {
-				case 1:
-					bt_switch.Visible = true;
-					break;
-				case 2:
-					bt_switch.Visible = false;
-					break;
+				int type = selected.GetType();
+				switch(type) {
+					case 1:
+						bt_switch.Visible = true;
+						break;
+					case 2:
+						bt_switch.Visible = false;
+						break;
+				}
 			}
 		}
 
 		private void bt_switch_status_Click(object sender, EventArgs e) {
-			SystemInfo selected = (SystemInfo)((ComboboxItem)cb_system_kind.SelectedItem).Value;
-			int type = selected.GetType();
-			switch (type) {
-				case 1:
-					StatusSwitch statusSwitch = new StatusSwitch(dInfo);
-					statusSwitch.Show();
-					break;
-				case 2:
+			string selectedKind = (cb_system_kind.Text ?? "").Trim();
+			string selectedKindLower = selectedKind.ToLower();
+
+			int type = -1;
+			if (cb_system_kind.SelectedItem is ComboboxItem item && item.Value is SystemInfo sysInfo) {
+				type = sysInfo.GetType();
+			} else if (cb_system_kind.SelectedItem is SystemInfo sys) {
+				type = sys.GetType();
+			}
+
+			bool isWireless = (type == 2) || selectedKindLower.Contains("무선") || selectedKindLower.Contains("wireless") || selectedKindLower.Contains("wifi") || selectedKindLower.Contains("ap");
+			bool isSwitch = (type == 1) || selectedKindLower.Contains("스위치") || selectedKindLower.Contains("switch");
+
+			if (dInfo != null) {
+				dInfo.addr = tb_addr.Text.Trim();
+				dInfo.name = tb_device_nm.Text.Trim();
+				dInfo.type = selectedKind;
+			}
+
+			if (isWireless) {
+				WifiStatusForm wifiStatus = new WifiStatusForm();
+				wifiStatus.cb_ip.Text	= tb_addr.Text.Trim();
+				wifiStatus.tb_port.Text = string.IsNullOrEmpty(tb_conn_port.Text.Trim()) ? "80" : tb_conn_port.Text.Trim();
+				wifiStatus.scanProtocol = (!string.IsNullOrWhiteSpace(cb_conn_type.Text) && cb_conn_type.Text.Trim().ToLower() == "https") ? "https" : "http";
+				wifiStatus.ShowDialog();
+			} else if (isSwitch) {
+				StatusSwitch statusSwitch = new StatusSwitch(dInfo);
+				statusSwitch.ShowDialog();
+			} else {
+				if (dInfo != null && !string.IsNullOrEmpty(dInfo.type) && (dInfo.type.Contains("무선") || dInfo.type.ToLower().Contains("wireless"))) {
 					WifiStatusForm wifiStatus = new WifiStatusForm();
-					wifiStatus.cb_ip.Text	= dInfo.addr;
-					wifiStatus.tb_port.Text = dInfo.connPort.ToString();
-					wifiStatus.Show();
-					/*
-					// SCAN으로 이동
-					if (mForm != null) {
-						mForm.WirelessScan(dInfo);
-					} else {
-						MessageBox.Show("프로그램 오류 발생.", "알림창");
-					}
-					Close();
-					*/
-					break;
+					wifiStatus.cb_ip.Text	= tb_addr.Text.Trim();
+					wifiStatus.tb_port.Text = string.IsNullOrEmpty(tb_conn_port.Text.Trim()) ? "80" : tb_conn_port.Text.Trim();
+					wifiStatus.scanProtocol = (!string.IsNullOrWhiteSpace(cb_conn_type.Text) && cb_conn_type.Text.Trim().ToLower() == "https") ? "https" : "http";
+					wifiStatus.ShowDialog();
+				} else {
+					StatusSwitch statusSwitch = new StatusSwitch(dInfo);
+					statusSwitch.ShowDialog();
+				}
 			}
 		}
 

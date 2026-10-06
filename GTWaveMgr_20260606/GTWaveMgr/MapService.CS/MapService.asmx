@@ -1,1 +1,0 @@
-﻿<%@ WebService Language="C#" CodeBehind="MapService.asmx.cs" Class="MapService.MapService" %>

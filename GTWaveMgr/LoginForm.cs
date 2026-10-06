@@ -1,5 +1,6 @@
 using AnyBoBu.info;
 using Awool;
+using FireFly.utils;
 using GTWave.info;
 using System;
 using System.Drawing;
@@ -23,27 +24,12 @@ namespace HyperBase
 
 		private void LoginForm_Load(object sender, EventArgs e)
 		{
-			/*
-			cb_login_id_save.Checked	= Properties.Settings.Default.Login_IDSave;
-			cb_login_auto.Checked		= Properties.Settings.Default.Login_Auto;
-			if (cb_login_id_save.Checked) {
-				tb_user_id.Text	= Properties.Settings.Default.Login_UserID;
-				tb_user_pw.Text	= Properties.Settings.Default.Login_UserPW;
-			}
-
-            Logo.Location = new Point((this.Width - Logo.Width) / 2, 43);
-			*/
-
-			//Global.mMainForm.MyNoti += Noti;
-			Screen[] screens = Screen.AllScreens;
-			if (screens.Length > 1) // Has more screen
-			{
-				Screen scrn = (screens[1].WorkingArea.Contains(this.Location)) ? screens[0] : screens[0];
-				Rectangle screenRect = scrn.WorkingArea; // "Screen 클래스 : 화면 크기 구하기" 참조
-
-				this.Show();
-				this.Location = new Point(screenRect.Width / 2 - this.Size.Width / 2, screenRect.Height / 2 - this.Size.Height / 2);
-			}
+			try {
+				Screen primary = Screen.PrimaryScreen;
+				Rectangle screenRect = primary.WorkingArea;
+				this.StartPosition = FormStartPosition.Manual;
+				this.Location = new Point(screenRect.Left + (screenRect.Width - this.Width) / 2, screenRect.Top + (screenRect.Height - this.Height) / 2);
+			} catch { }
 		}
 
 		private void bt_login_Click(object sender, EventArgs e)
@@ -58,27 +44,40 @@ namespace HyperBase
 				MessageBox.Show("로그인 비밀번호를 입력하세요", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				this.tb_user_pw.Focus();
 			} else {
+				try
+				{
+					if (GlobalHelpers.mUserTb == null)
+					{
+						MessageBox.Show("데이터베이스가 준비되지 않았습니다. 프로그램을 다시 시작해 주세요.", "알림창", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+					}
 
-				var results = GlobalHelpers.mUserTb.Query()
-						.Where(x => x.mMemId.Equals(tb_user_id.Text))
-						//.OrderBy(x => x.mMemNm)
-						//.Select(x => new { x.site, NameUpper = x.site.ToUpper() })
-						//.Limit(10)
-						.ToList();
+					var results = GlobalHelpers.mUserTb.Query()
+							.Where(x => x.mMemId.Equals(tb_user_id.Text))
+							//.OrderBy(x => x.mMemNm)
+							//.Select(x => new { x.site, NameUpper = x.site.ToUpper() })
+							//.Limit(10)
+							.ToList();
 
-				if (results.Count == 0) {
-					MessageBox.Show("없는 아이디 입니다.", "알림창");
-					return;
+					if (results.Count == 0) {
+						MessageBox.Show("없는 아이디 입니다.", "알림창");
+						return;
+					}
+
+					UserInfo uInfo = results[0];
+					if (!string.IsNullOrEmpty(uInfo.mMemPw) && !tb_user_pw.Text.Equals(uInfo.mMemPw)) {
+						MessageBox.Show("암호가 틀립니다.", "알림창");
+						return;
+					}
+					this.LoggedUserInfo = uInfo;
+					this.DialogResult = DialogResult.OK;
+					this.Close();
 				}
-
-				UserInfo uInfo = results[0];
-				if (!string.IsNullOrEmpty(uInfo.mMemPw) && !tb_user_pw.Text.Equals(uInfo.mMemPw)) {
-					MessageBox.Show("암호가 틀립니다.", "알림창");
-					return;
+				catch (Exception ex)
+				{
+					LogUtil.LogException("LOGIN", ex, "Login DB query failed");
+					MessageBox.Show("로그인 처리 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
-				this.LoggedUserInfo = uInfo;
-				this.DialogResult = DialogResult.OK;
-				this.Close();
 			}
 		}
 

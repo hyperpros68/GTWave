@@ -1,4 +1,4 @@
-﻿
+
 using iTextSharp.text;
 
 using System;
@@ -40,6 +40,7 @@ namespace GTWave.gui {
 		private static bool isScan = false;
 		private static string scanIp = "";
 		private static int scanPort = 80;
+		public string scanProtocol = "http";
 
 		private static string scan_id = "";
 		private static string scan_pw = "";
@@ -82,9 +83,15 @@ namespace GTWave.gui {
 		}
 
 		private void WifiStatusForm_Load(object sender, EventArgs e) {
-			scanIp = cb_ip.Text;
-			int.TryParse(tb_port.Text, out int port);
-			scanPort = port;
+			if (!string.IsNullOrEmpty(cb_ip.Text) && !cb_ip.Items.Contains(cb_ip.Text)) {
+				cb_ip.Items.Add(cb_ip.Text);
+			}
+			scanIp = cb_ip.Text.Trim();
+			if (int.TryParse(tb_port.Text.Trim(), out int port) && port > 0) {
+				scanPort = port;
+			} else {
+				scanPort = (scanProtocol == "https") ? 443 : 80;
+			}
 
 			DispClear();
 		}
@@ -113,6 +120,14 @@ namespace GTWave.gui {
 				MessageBox.Show("현재 Scan 진행중...");
 				return;
 			}
+
+			scanIp = cb_ip.Text.Trim();
+			if (int.TryParse(tb_port.Text.Trim(), out int port) && port > 0) {
+				scanPort = port;
+			} else {
+				scanPort = (scanProtocol == "https") ? 443 : 80;
+			}
+			mHeadWrite = false;
 
 			if (cb_auto_save.Checked) {
 				//mSaveFile
@@ -245,12 +260,12 @@ namespace GTWave.gui {
 							ssid = network["ssid"].ToString();
 							try {
 								encryption = network["encryption"].ToString();
-							} catch (Exception ex) {
+							} catch (Exception) {
 								encryption = "none";
 							}
 							try {
 								frequency = network["frequency"].ToString();
-							} catch (Exception ex) {
+							} catch (Exception) {
 								frequency = "auto";
 							}
 							mode = network["mode"].ToString();
@@ -379,12 +394,12 @@ namespace GTWave.gui {
 								ssid = network["ssid"].ToString();
 								try {
 									encryption = network["encryption"].ToString();
-								} catch (Exception ex) {
+								} catch (Exception) {
 									encryption = "none";
 								}
 								try {
 									frequency = network["frequency"].ToString();
-								} catch (Exception ex) {
+								} catch (Exception) {
 									frequency = "auto";
 								}
 								mode = network["mode"].ToString();
@@ -405,32 +420,36 @@ namespace GTWave.gui {
 							}
 						}
 
-						if (group == 0 && !mHeadWrite) {
+						if (group == 0) {
 							gb_device0.Text = device;
 							lb_g_bssid_0.Text = bssid;
 							lb_g_ssid_0.Text = ssid;
 							lb_g_sec_0.Text = encryption;
 							lb_g_freq_0.Text = frequency;
 							lb_g_mode_0.Text = mode;
-							mSaveHandle.WriteLine($"{device} | {bssid} | {ssid} | {encryption} | {frequency} | {mode} | |");
-							mSaveHandle.Flush();
+							if (!mHeadWrite && mSaveHandle != null) {
+								mSaveHandle.WriteLine($"{device} | {bssid} | {ssid} | {encryption} | {frequency} | {mode} | |");
+								mSaveHandle.Flush();
+							}
 						}
 
-						if (group == 1 && !mHeadWrite) {
+						if (group == 1) {
 							gb_device1.Text = device;
 							lb_g_bssid_1.Text = bssid;
 							lb_g_ssid_1.Text = ssid;
 							lb_g_sec_1.Text = encryption;
 							lb_g_freq_1.Text = frequency;
 							lb_g_mode_1.Text = mode;
-							mSaveHandle.WriteLine($"{device} | {bssid} | {ssid} | {encryption} | {frequency} | {mode} | |");
-							mSaveHandle.Flush();
+							if (!mHeadWrite && mSaveHandle != null) {
+								mSaveHandle.WriteLine($"{device} | {bssid} | {ssid} | {encryption} | {frequency} | {mode} | |");
+								mSaveHandle.Flush();
+							}
 						}
 
 						group++;
 					}
 
-					if (!mHeadWrite) {
+					if (!mHeadWrite && mSaveHandle != null) {
 						mSaveHandle.WriteLine($"DATE | SSID | MAC address | signal | signal chain | RxRate | TxRate | TxCCQ");
 						mSaveHandle.Flush();
 					}
@@ -502,7 +521,11 @@ namespace GTWave.gui {
 			ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService();
 			chromeDriverService.HideCommandPromptWindow = true;
 
-			string Url = $"http://{scanIp}:{scanPort}/cgi-bin/luci/;stok=1e1220bc87983e65395e7344?7344?status=1&_=0.6561156622211763";
+			string scheme = string.IsNullOrWhiteSpace(form?.scanProtocol) ? "http" : form.scanProtocol.Trim().ToLower();
+			if (scanPort == 443) scheme = "https";
+			else if (scanPort == 80 && scheme != "https") scheme = "http";
+
+			string Url = $"{scheme}://{scanIp}:{scanPort}/cgi-bin/luci/;stok=1e1220bc87983e65395e7344?7344?status=1&_=0.6561156622211763";
 			var options = new ChromeOptions();                                  // ChromeOptions 인스턴스 생성
 			options.AddArgument("--headless");
 			options.AddArgument("ignore-certificate-errors");
@@ -512,7 +535,14 @@ namespace GTWave.gui {
 
 			try {
 				//driver.Navigate().GoToUrl(@"http://192.168.10.6:8081/cgi-bin/luci/;stok=1e1220bc87983e65395e7344?7344?status=1&_=0.6561156622211763");
-				driver.Navigate().GoToUrl(Url);
+				try {
+					driver.Navigate().GoToUrl(Url);
+				} catch (WebDriverException webEx) when (webEx.Message.Contains("ERR_CONNECTION_REFUSED") && scheme == "http") {
+					// http 연결 거부 시 https로 1회 자동 재시도
+					scheme = "https";
+					Url = $"{scheme}://{scanIp}:{scanPort}/cgi-bin/luci/;stok=1e1220bc87983e65395e7344?7344?status=1&_=0.6561156622211763";
+					driver.Navigate().GoToUrl(Url);
+				}
 
 				IWebElement pwInput = driver.FindElement(By.ClassName("cbi-input-password"));
 				//pwInput.SendKeys("password");
@@ -552,9 +582,17 @@ namespace GTWave.gui {
 					} catch { }
 					driver.Navigate().Refresh();
 				}
-				mSaveHandle.Close();
+				if (mSaveHandle != null) {
+					mSaveHandle.Close();
+					mSaveHandle = null;
+				}
 			} catch (Exception e) {
-				MessageBox.Show("에러 발생", e.Message);
+				string errMsg = $"무선 상태 조회 중 연결 에러가 발생했습니다.\n\n" +
+				               $"• 접속 URL: {Url}\n" +
+				               $"• 대상 IP: {scanIp} / 포트: {scanPort}\n\n" +
+				               $"[상세 원인]\n{e.Message}\n\n" +
+				               $"※ 대상 장비의 전원, IP 주소 및 웹 관리 포트(HTTP/HTTPS) 설정을 확인해 주십시오.";
+				MessageBox.Show(errMsg, "무선 상태보기 에러", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 
 			try {

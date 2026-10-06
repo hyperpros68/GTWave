@@ -29,21 +29,21 @@ namespace Awool
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormV1));
-			System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("노드0");
-			System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("노드5");
-			System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("노드7");
-			System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("노드8");
-			System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("노드6", new System.Windows.Forms.TreeNode[] {
-            treeNode30,
-            treeNode31});
-			System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("노드3", new System.Windows.Forms.TreeNode[] {
-            treeNode29,
-            treeNode32});
-			System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("노드4");
-			System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("노드1", new System.Windows.Forms.TreeNode[] {
-            treeNode33,
-            treeNode34});
-			System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("노드2");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("노드0");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("노드5");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("노드7");
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("노드8");
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("노드6", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4});
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("노드3", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode5});
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("노드4");
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("노드1", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7});
+			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("노드2");
 			this.sc_main = new System.Windows.Forms.SplitContainer();
 			this.bt_group_save = new System.Windows.Forms.Button();
 			this.pb_panel_right = new System.Windows.Forms.PictureBox();
@@ -53,6 +53,8 @@ namespace Awool
 			this.pb_full_screen = new System.Windows.Forms.Button();
 			this.bt_finder = new System.Windows.Forms.Button();
 			this.bt_status_mon = new System.Windows.Forms.Button();
+			this.bt_mon_start = new System.Windows.Forms.Button();
+			this.bt_mon_stop = new System.Windows.Forms.Button();
 			this.sc_context = new System.Windows.Forms.SplitContainer();
 			this.sc_left = new System.Windows.Forms.SplitContainer();
 			this.tv_group = new System.Windows.Forms.TreeView();
@@ -87,6 +89,8 @@ namespace Awool
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.cb_view_mode = new System.Windows.Forms.ComboBox();
 			this.panel5 = new System.Windows.Forms.Panel();
+			this.label25 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
 			this.tb_diagram_h = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tb_diagram_w = new System.Windows.Forms.TextBox();
@@ -148,6 +152,25 @@ namespace Awool
 			this.label21 = new System.Windows.Forms.Label();
 			this.cb_ip = new System.Windows.Forms.ComboBox();
 			this.bt_scan = new System.Windows.Forms.Button();
+			this.ecp_ping_monitor = new MakarovDev.ExpandCollapsePanel.ExpandCollapsePanel();
+			this.panel_ping_tool = new System.Windows.Forms.Panel();
+			this.bt_ping_save = new System.Windows.Forms.Button();
+			this.bt_ping_print = new System.Windows.Forms.Button();
+			this.bt_ping_search = new System.Windows.Forms.Button();
+			this.bt_ping_clear = new System.Windows.Forms.Button();
+			this.chk_ping_include = new System.Windows.Forms.CheckBox();
+			this.lv_ping_status = new System.Windows.Forms.ListView();
+			this.ch_ping_index = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_group = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_ip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_sent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_receive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_max = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_min = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_lost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_ping_loss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.aflp_state = new MakarovDev.ExpandCollapsePanel.AdvancedFlowLayoutPanel();
 			this.ecp_system_kind = new MakarovDev.ExpandCollapsePanel.ExpandCollapsePanel();
 			this.lv_system = new System.Windows.Forms.ListView();
@@ -168,7 +191,6 @@ namespace Awool
 			this.label26 = new System.Windows.Forms.Label();
 			this.tb_system_name = new System.Windows.Forms.TextBox();
 			this.ecp_device_log = new MakarovDev.ExpandCollapsePanel.ExpandCollapsePanel();
-			this.nud_sales = new System.Windows.Forms.NumericUpDown();
 			this.lv_device_log = new System.Windows.Forms.ListView();
 			this.ch_log_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ch_log_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -176,7 +198,15 @@ namespace Awool
 			this.ch_log_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ch_log_level = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ch_log_message = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.nud_sales = new System.Windows.Forms.NumericUpDown();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.bt_log_save = new System.Windows.Forms.Button();
+			this.bt_log_print = new System.Windows.Forms.Button();
+			this.bt_log_search = new System.Windows.Forms.Button();
+			this.bt_log_clear = new System.Windows.Forms.Button();
+			this.lbl_log_search = new System.Windows.Forms.Label();
+			this.tb_log_search = new System.Windows.Forms.TextBox();
+			this.cb_log_filter = new System.Windows.Forms.ComboBox();
 			this.lb_sale_nums = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.lb_sale_total = new System.Windows.Forms.Label();
@@ -199,23 +229,22 @@ namespace Awool
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.새로운구성도ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.구성도열기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.구성도저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.구성도잠금수정불가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.구성도잠금해제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-			this.로그보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.로그저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.보고서출력ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.모니터링결과출력ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.로그결과출력ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
 			this.종료ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.diagramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.모니터링중지ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-			this.장비검색ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.로그ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.시스템ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.장비검색ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
 			this.시스템추가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.시스템수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -230,19 +259,18 @@ namespace Awool
 			this.옵션ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.이름으로ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.iP주소로ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.구성도배경ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-			this.sNMPOIDTempleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.구성도배경ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.구성도배경삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-			this.무선연결선그리기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.sNMPOIDTempleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
 			this.환경세팅ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.사용자관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.관리자설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.diagram1 = new MindFusion.Diagramming.Diagram();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label25 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.sc_main)).BeginInit();
 			this.sc_main.Panel1.SuspendLayout();
 			this.sc_main.Panel2.SuspendLayout();
@@ -281,6 +309,8 @@ namespace Awool
 			this.ecp_scan_info.SuspendLayout();
 			this.gb_device1.SuspendLayout();
 			this.gb_device0.SuspendLayout();
+			this.ecp_ping_monitor.SuspendLayout();
+			this.panel_ping_tool.SuspendLayout();
 			this.aflp_state.SuspendLayout();
 			this.ecp_system_kind.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pb_system_image)).BeginInit();
@@ -296,7 +326,7 @@ namespace Awool
 			// 
 			this.sc_main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.sc_main.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.sc_main.Location = new System.Drawing.Point(0, 28);
+			this.sc_main.Location = new System.Drawing.Point(0, 30);
 			this.sc_main.Name = "sc_main";
 			this.sc_main.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
@@ -311,8 +341,8 @@ namespace Awool
 			// sc_main.Panel2
 			// 
 			this.sc_main.Panel2.Controls.Add(this.sc_context);
-			this.sc_main.Size = new System.Drawing.Size(1944, 1004);
-			this.sc_main.SplitterDistance = 52;
+			this.sc_main.Size = new System.Drawing.Size(1944, 1002);
+			this.sc_main.SplitterDistance = 51;
 			this.sc_main.TabIndex = 2;
 			this.sc_main.Resize += new System.EventHandler(this.sc_main_Resize);
 			// 
@@ -335,7 +365,7 @@ namespace Awool
 			this.pb_panel_right.Image = ((System.Drawing.Image)(resources.GetObject("pb_panel_right.Image")));
 			this.pb_panel_right.Location = new System.Drawing.Point(1899, 6);
 			this.pb_panel_right.Name = "pb_panel_right";
-			this.pb_panel_right.Size = new System.Drawing.Size(37, 43);
+			this.pb_panel_right.Size = new System.Drawing.Size(37, 42);
 			this.pb_panel_right.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pb_panel_right.TabIndex = 256;
 			this.pb_panel_right.TabStop = false;
@@ -371,9 +401,11 @@ namespace Awool
 			this.pn_top_info.Controls.Add(this.pb_full_screen);
 			this.pn_top_info.Controls.Add(this.bt_finder);
 			this.pn_top_info.Controls.Add(this.bt_status_mon);
+			this.pn_top_info.Controls.Add(this.bt_mon_start);
+			this.pn_top_info.Controls.Add(this.bt_mon_stop);
 			this.pn_top_info.Location = new System.Drawing.Point(198, -1);
 			this.pn_top_info.Name = "pn_top_info";
-			this.pn_top_info.Size = new System.Drawing.Size(1517, 53);
+			this.pn_top_info.Size = new System.Drawing.Size(1517, 52);
 			this.pn_top_info.TabIndex = 249;
 			// 
 			// pb_full_screen
@@ -427,6 +459,38 @@ namespace Awool
 			this.bt_status_mon.UseVisualStyleBackColor = false;
 			this.bt_status_mon.Click += new System.EventHandler(this.bt_status_mon_Click);
 			// 
+			// bt_mon_start
+			// 
+			this.bt_mon_start.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_mon_start.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_mon_start.FlatAppearance.BorderSize = 0;
+			this.bt_mon_start.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_mon_start.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_mon_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_mon_start.Location = new System.Drawing.Point(81, 6);
+			this.bt_mon_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.bt_mon_start.Name = "bt_mon_start";
+			this.bt_mon_start.Size = new System.Drawing.Size(26, 21);
+			this.bt_mon_start.TabIndex = 257;
+			this.bt_mon_start.UseVisualStyleBackColor = false;
+			this.bt_mon_start.Click += new System.EventHandler(this.bt_mon_start_Click);
+			// 
+			// bt_mon_stop
+			// 
+			this.bt_mon_stop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_mon_stop.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_mon_stop.FlatAppearance.BorderSize = 0;
+			this.bt_mon_stop.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_mon_stop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_mon_stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_mon_stop.Location = new System.Drawing.Point(111, 6);
+			this.bt_mon_stop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.bt_mon_stop.Name = "bt_mon_stop";
+			this.bt_mon_stop.Size = new System.Drawing.Size(26, 21);
+			this.bt_mon_stop.TabIndex = 258;
+			this.bt_mon_stop.UseVisualStyleBackColor = false;
+			this.bt_mon_stop.Click += new System.EventHandler(this.bt_mon_stop_Click);
+			// 
 			// sc_context
 			// 
 			this.sc_context.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -441,8 +505,8 @@ namespace Awool
 			// sc_context.Panel2
 			// 
 			this.sc_context.Panel2.Controls.Add(this.sc_body);
-			this.sc_context.Size = new System.Drawing.Size(1942, 946);
-			this.sc_context.SplitterDistance = 239;
+			this.sc_context.Size = new System.Drawing.Size(1942, 945);
+			this.sc_context.SplitterDistance = 238;
 			this.sc_context.TabIndex = 0;
 			// 
 			// sc_left
@@ -460,8 +524,8 @@ namespace Awool
 			// sc_left.Panel2
 			// 
 			this.sc_left.Panel2.Controls.Add(this.sc_mem_list);
-			this.sc_left.Size = new System.Drawing.Size(239, 946);
-			this.sc_left.SplitterDistance = 320;
+			this.sc_left.Size = new System.Drawing.Size(238, 945);
+			this.sc_left.SplitterDistance = 319;
 			this.sc_left.TabIndex = 113;
 			// 
 			// tv_group
@@ -471,30 +535,30 @@ namespace Awool
 			this.tv_group.ItemHeight = 22;
 			this.tv_group.Location = new System.Drawing.Point(0, 0);
 			this.tv_group.Name = "tv_group";
-			treeNode28.Name = "노드0";
-			treeNode28.Text = "노드0";
-			treeNode29.Name = "노드5";
-			treeNode29.Text = "노드5";
-			treeNode30.Name = "노드7";
-			treeNode30.Text = "노드7";
-			treeNode31.Name = "노드8";
-			treeNode31.Text = "노드8";
-			treeNode32.Name = "노드6";
-			treeNode32.Text = "노드6";
-			treeNode33.Name = "노드3";
-			treeNode33.Text = "노드3";
-			treeNode34.Name = "노드4";
-			treeNode34.Text = "노드4";
-			treeNode35.Name = "노드1";
-			treeNode35.Text = "노드1";
-			treeNode36.Name = "노드2";
-			treeNode36.Text = "노드2";
+			treeNode1.Name = "노드0";
+			treeNode1.Text = "노드0";
+			treeNode2.Name = "노드5";
+			treeNode2.Text = "노드5";
+			treeNode3.Name = "노드7";
+			treeNode3.Text = "노드7";
+			treeNode4.Name = "노드8";
+			treeNode4.Text = "노드8";
+			treeNode5.Name = "노드6";
+			treeNode5.Text = "노드6";
+			treeNode6.Name = "노드3";
+			treeNode6.Text = "노드3";
+			treeNode7.Name = "노드4";
+			treeNode7.Text = "노드4";
+			treeNode8.Name = "노드1";
+			treeNode8.Text = "노드1";
+			treeNode9.Name = "노드2";
+			treeNode9.Text = "노드2";
 			this.tv_group.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode28,
-            treeNode35,
-            treeNode36});
+            treeNode1,
+            treeNode8,
+            treeNode9});
 			this.tv_group.ShowNodeToolTips = true;
-			this.tv_group.Size = new System.Drawing.Size(237, 318);
+			this.tv_group.Size = new System.Drawing.Size(236, 317);
 			this.tv_group.TabIndex = 0;
 			this.tv_group.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_group_AfterSelect);
 			this.tv_group.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_group_MouseDown);
@@ -513,8 +577,8 @@ namespace Awool
 			// sc_mem_list.Panel2
 			// 
 			this.sc_mem_list.Panel2.Controls.Add(this.lv_device_list);
-			this.sc_mem_list.Size = new System.Drawing.Size(237, 620);
-			this.sc_mem_list.SplitterDistance = 35;
+			this.sc_mem_list.Size = new System.Drawing.Size(236, 620);
+			this.sc_mem_list.SplitterDistance = 34;
 			this.sc_mem_list.TabIndex = 113;
 			// 
 			// tb_group_title
@@ -523,7 +587,7 @@ namespace Awool
 			this.tb_group_title.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tb_group_title.Location = new System.Drawing.Point(0, 0);
 			this.tb_group_title.Name = "tb_group_title";
-			this.tb_group_title.Size = new System.Drawing.Size(237, 35);
+			this.tb_group_title.Size = new System.Drawing.Size(236, 34);
 			this.tb_group_title.TabIndex = 13;
 			this.tb_group_title.Text = "jhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhg";
 			this.tb_group_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -549,7 +613,7 @@ namespace Awool
 			this.lv_device_list.Location = new System.Drawing.Point(0, 0);
 			this.lv_device_list.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
 			this.lv_device_list.Name = "lv_device_list";
-			this.lv_device_list.Size = new System.Drawing.Size(237, 581);
+			this.lv_device_list.Size = new System.Drawing.Size(236, 582);
 			this.lv_device_list.TabIndex = 113;
 			this.lv_device_list.UseCompatibleStateImageBehavior = false;
 			this.lv_device_list.View = System.Windows.Forms.View.Details;
@@ -604,7 +668,7 @@ namespace Awool
 			// sc_body.Panel2
 			// 
 			this.sc_body.Panel2.Controls.Add(this.aflp_state);
-			this.sc_body.Size = new System.Drawing.Size(1699, 946);
+			this.sc_body.Size = new System.Drawing.Size(1700, 945);
 			this.sc_body.SplitterDistance = 1340;
 			this.sc_body.TabIndex = 0;
 			// 
@@ -616,12 +680,13 @@ namespace Awool
 			this.aflp_manage.Controls.Add(this.advancedFlowLayoutPanel1);
 			this.aflp_manage.Controls.Add(this.ecp_diagram);
 			this.aflp_manage.Controls.Add(this.ecp_scan_info);
+			this.aflp_manage.Controls.Add(this.ecp_ping_monitor);
 			this.aflp_manage.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.aflp_manage.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.aflp_manage.Location = new System.Drawing.Point(0, 0);
 			this.aflp_manage.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
 			this.aflp_manage.Name = "aflp_manage";
-			this.aflp_manage.Size = new System.Drawing.Size(1340, 946);
+			this.aflp_manage.Size = new System.Drawing.Size(1340, 945);
 			this.aflp_manage.TabIndex = 12;
 			this.aflp_manage.WrapContents = false;
 			// 
@@ -891,6 +956,28 @@ namespace Awool
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(194, 90);
 			this.panel5.TabIndex = 65;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.label25.Location = new System.Drawing.Point(142, 53);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(45, 23);
+			this.label25.TabIndex = 80;
+			this.label25.Text = "pixel";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.label4.Location = new System.Drawing.Point(142, 18);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(45, 23);
+			this.label4.TabIndex = 79;
+			this.label4.Text = "pixel";
 			// 
 			// tb_diagram_h
 			// 
@@ -1167,6 +1254,7 @@ namespace Awool
 			this.ecp_scan_info.TabIndex = 11;
 			this.ecp_scan_info.Text = "시스템 정보 관리";
 			this.ecp_scan_info.UseAnimation = true;
+			this.ecp_scan_info.Visible = false;
 			// 
 			// lv_scan_list
 			// 
@@ -1616,6 +1704,210 @@ namespace Awool
 			this.bt_scan.UseVisualStyleBackColor = false;
 			this.bt_scan.Click += new System.EventHandler(this.bt_scan_Click);
 			// 
+			// ecp_ping_monitor
+			// 
+			this.ecp_ping_monitor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ecp_ping_monitor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.ecp_ping_monitor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.ecp_ping_monitor.ButtonSize = MakarovDev.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonSize.Normal;
+			this.ecp_ping_monitor.ButtonStyle = MakarovDev.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonStyle.Circle;
+			this.ecp_ping_monitor.Controls.Add(this.panel_ping_tool);
+			this.ecp_ping_monitor.Controls.Add(this.lv_ping_status);
+			this.ecp_ping_monitor.ExpandedHeight = 480;
+			this.ecp_ping_monitor.IsExpanded = true;
+			this.ecp_ping_monitor.IsReloadVisible = false;
+			this.ecp_ping_monitor.IsSaveVisible = false;
+			this.ecp_ping_monitor.Location = new System.Drawing.Point(3, 1454);
+			this.ecp_ping_monitor.Name = "ecp_ping_monitor";
+			this.ecp_ping_monitor.Size = new System.Drawing.Size(1311, 480);
+			this.ecp_ping_monitor.TabIndex = 13;
+			this.ecp_ping_monitor.Text = "시스템 리스트 모니터링";
+			this.ecp_ping_monitor.UseAnimation = true;
+			// 
+			// panel_ping_tool
+			// 
+			this.panel_ping_tool.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel_ping_tool.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.panel_ping_tool.Controls.Add(this.bt_ping_save);
+			this.panel_ping_tool.Controls.Add(this.bt_ping_print);
+			this.panel_ping_tool.Controls.Add(this.bt_ping_search);
+			this.panel_ping_tool.Controls.Add(this.bt_ping_clear);
+			this.panel_ping_tool.Controls.Add(this.chk_ping_include);
+			this.panel_ping_tool.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.panel_ping_tool.Location = new System.Drawing.Point(3, 35);
+			this.panel_ping_tool.Name = "panel_ping_tool";
+			this.panel_ping_tool.Size = new System.Drawing.Size(2270, 34);
+			this.panel_ping_tool.TabIndex = 46;
+			// 
+			// bt_ping_save
+			// 
+			this.bt_ping_save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_ping_save.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_ping_save.FlatAppearance.BorderSize = 0;
+			this.bt_ping_save.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_ping_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_ping_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_ping_save.Location = new System.Drawing.Point(4, 4);
+			this.bt_ping_save.Name = "bt_ping_save";
+			this.bt_ping_save.Size = new System.Drawing.Size(24, 24);
+			this.bt_ping_save.TabIndex = 0;
+			this.bt_ping_save.UseVisualStyleBackColor = false;
+			this.bt_ping_save.Click += new System.EventHandler(this.bt_ping_save_Click);
+			// 
+			// bt_ping_print
+			// 
+			this.bt_ping_print.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_ping_print.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_ping_print.FlatAppearance.BorderSize = 0;
+			this.bt_ping_print.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_ping_print.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_ping_print.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_ping_print.Location = new System.Drawing.Point(32, 4);
+			this.bt_ping_print.Name = "bt_ping_print";
+			this.bt_ping_print.Size = new System.Drawing.Size(24, 24);
+			this.bt_ping_print.TabIndex = 1;
+			this.bt_ping_print.UseVisualStyleBackColor = false;
+			this.bt_ping_print.Click += new System.EventHandler(this.bt_ping_print_Click);
+			// 
+			// bt_ping_search
+			// 
+			this.bt_ping_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_ping_search.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_ping_search.FlatAppearance.BorderSize = 0;
+			this.bt_ping_search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_ping_search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_ping_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_ping_search.Location = new System.Drawing.Point(60, 4);
+			this.bt_ping_search.Name = "bt_ping_search";
+			this.bt_ping_search.Size = new System.Drawing.Size(24, 24);
+			this.bt_ping_search.TabIndex = 2;
+			this.bt_ping_search.UseVisualStyleBackColor = false;
+			this.bt_ping_search.Click += new System.EventHandler(this.bt_ping_search_Click);
+			// 
+			// bt_ping_clear
+			// 
+			this.bt_ping_clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_ping_clear.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_ping_clear.FlatAppearance.BorderSize = 0;
+			this.bt_ping_clear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_ping_clear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_ping_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_ping_clear.Location = new System.Drawing.Point(88, 4);
+			this.bt_ping_clear.Name = "bt_ping_clear";
+			this.bt_ping_clear.Size = new System.Drawing.Size(24, 24);
+			this.bt_ping_clear.TabIndex = 3;
+			this.bt_ping_clear.UseVisualStyleBackColor = false;
+			this.bt_ping_clear.Click += new System.EventHandler(this.bt_ping_clear_Click);
+			// 
+			// chk_ping_include
+			// 
+			this.chk_ping_include.AutoSize = true;
+			this.chk_ping_include.Location = new System.Drawing.Point(120, 7);
+			this.chk_ping_include.Name = "chk_ping_include";
+			this.chk_ping_include.Size = new System.Drawing.Size(163, 27);
+			this.chk_ping_include.TabIndex = 5;
+			this.chk_ping_include.Text = "Ping 대상만 포함";
+			this.chk_ping_include.UseVisualStyleBackColor = true;
+			this.chk_ping_include.CheckedChanged += new System.EventHandler(this.chk_ping_include_CheckedChanged);
+			// 
+			// lv_ping_status
+			// 
+			this.lv_ping_status.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lv_ping_status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.lv_ping_status.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lv_ping_status.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ch_ping_index,
+            this.ch_ping_group,
+            this.ch_ping_name,
+            this.ch_ping_ip,
+            this.ch_ping_sent,
+            this.ch_ping_status,
+            this.ch_ping_receive,
+            this.ch_ping_max,
+            this.ch_ping_min,
+            this.ch_ping_lost,
+            this.ch_ping_loss});
+			this.lv_ping_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.lv_ping_status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.lv_ping_status.FullRowSelect = true;
+			this.lv_ping_status.GridLines = true;
+			this.lv_ping_status.HideSelection = false;
+			this.lv_ping_status.Location = new System.Drawing.Point(3, 72);
+			this.lv_ping_status.Name = "lv_ping_status";
+			this.lv_ping_status.OwnerDraw = true;
+			this.lv_ping_status.Size = new System.Drawing.Size(2270, 563);
+			this.lv_ping_status.TabIndex = 45;
+			this.lv_ping_status.UseCompatibleStateImageBehavior = false;
+			this.lv_ping_status.View = System.Windows.Forms.View.Details;
+			this.lv_ping_status.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.lv_ping_status_DrawColumnHeader);
+			this.lv_ping_status.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.lv_ping_status_DrawSubItem);
+			// 
+			// ch_ping_index
+			// 
+			this.ch_ping_index.Text = "Index";
+			this.ch_ping_index.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_index.Width = 50;
+			// 
+			// ch_ping_group
+			// 
+			this.ch_ping_group.Text = "그룹 이름";
+			this.ch_ping_group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_group.Width = 85;
+			// 
+			// ch_ping_name
+			// 
+			this.ch_ping_name.Text = "시스템 이름";
+			this.ch_ping_name.Width = 100;
+			// 
+			// ch_ping_ip
+			// 
+			this.ch_ping_ip.Text = "IP 주소";
+			this.ch_ping_ip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_ip.Width = 115;
+			// 
+			// ch_ping_sent
+			// 
+			this.ch_ping_sent.Text = "Sent";
+			this.ch_ping_sent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// ch_ping_status
+			// 
+			this.ch_ping_status.Text = "Status";
+			this.ch_ping_status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_status.Width = 95;
+			// 
+			// ch_ping_receive
+			// 
+			this.ch_ping_receive.Text = "Receive";
+			this.ch_ping_receive.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// ch_ping_max
+			// 
+			this.ch_ping_max.Text = "Max(ms)";
+			this.ch_ping_max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_max.Width = 65;
+			// 
+			// ch_ping_min
+			// 
+			this.ch_ping_min.Text = "Min(ms)";
+			this.ch_ping_min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_min.Width = 65;
+			// 
+			// ch_ping_lost
+			// 
+			this.ch_ping_lost.Text = "Lost";
+			this.ch_ping_lost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// ch_ping_loss
+			// 
+			this.ch_ping_loss.Text = "Loss(%)";
+			this.ch_ping_loss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.ch_ping_loss.Width = 70;
+			// 
 			// aflp_state
 			// 
 			this.aflp_state.AutoScroll = true;
@@ -1630,7 +1922,7 @@ namespace Awool
 			this.aflp_state.Location = new System.Drawing.Point(0, 0);
 			this.aflp_state.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
 			this.aflp_state.Name = "aflp_state";
-			this.aflp_state.Size = new System.Drawing.Size(355, 946);
+			this.aflp_state.Size = new System.Drawing.Size(356, 945);
 			this.aflp_state.TabIndex = 12;
 			this.aflp_state.WrapContents = false;
 			// 
@@ -1658,7 +1950,7 @@ namespace Awool
 			this.ecp_system_kind.Location = new System.Drawing.Point(3, 4);
 			this.ecp_system_kind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.ecp_system_kind.Name = "ecp_system_kind";
-			this.ecp_system_kind.Size = new System.Drawing.Size(347, 388);
+			this.ecp_system_kind.Size = new System.Drawing.Size(348, 388);
 			this.ecp_system_kind.TabIndex = 5;
 			this.ecp_system_kind.Text = "Device 종류 관리";
 			this.ecp_system_kind.UseAnimation = true;
@@ -1683,7 +1975,7 @@ namespace Awool
 			this.lv_system.Location = new System.Drawing.Point(0, 155);
 			this.lv_system.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.lv_system.Name = "lv_system";
-			this.lv_system.Size = new System.Drawing.Size(976, 223);
+			this.lv_system.Size = new System.Drawing.Size(977, 223);
 			this.lv_system.TabIndex = 139;
 			this.lv_system.UseCompatibleStateImageBehavior = false;
 			this.lv_system.View = System.Windows.Forms.View.Details;
@@ -1823,8 +2115,8 @@ namespace Awool
 			this.ecp_device_log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.ecp_device_log.ButtonSize = MakarovDev.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonSize.Normal;
 			this.ecp_device_log.ButtonStyle = MakarovDev.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonStyle.Circle;
-			this.ecp_device_log.Controls.Add(this.nud_sales);
 			this.ecp_device_log.Controls.Add(this.lv_device_log);
+			this.ecp_device_log.Controls.Add(this.nud_sales);
 			this.ecp_device_log.Controls.Add(this.panel1);
 			this.ecp_device_log.ExpandedHeight = 460;
 			this.ecp_device_log.IsExpanded = true;
@@ -1832,31 +2124,13 @@ namespace Awool
 			this.ecp_device_log.IsSaveVisible = true;
 			this.ecp_device_log.Location = new System.Drawing.Point(3, 399);
 			this.ecp_device_log.Name = "ecp_device_log";
-			this.ecp_device_log.Size = new System.Drawing.Size(347, 460);
+			this.ecp_device_log.Size = new System.Drawing.Size(348, 460);
 			this.ecp_device_log.TabIndex = 13;
 			this.ecp_device_log.Text = "Device Log 정보";
 			this.ecp_device_log.UseAnimation = true;
 			// 
-			// nud_sales
-			// 
-			this.nud_sales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_sales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.nud_sales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.nud_sales.Location = new System.Drawing.Point(3374, 40);
-			this.nud_sales.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-			this.nud_sales.Name = "nud_sales";
-			this.nud_sales.Size = new System.Drawing.Size(52, 29);
-			this.nud_sales.TabIndex = 272;
-			// 
 			// lv_device_log
 			// 
-			this.lv_device_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.lv_device_log.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			this.lv_device_log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.lv_device_log.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1866,16 +2140,17 @@ namespace Awool
             this.ch_log_name,
             this.ch_log_level,
             this.ch_log_message});
+			this.lv_device_log.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.lv_device_log.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.lv_device_log.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.lv_device_log.FullRowSelect = true;
 			this.lv_device_log.GridLines = true;
 			this.lv_device_log.HideSelection = false;
-			this.lv_device_log.Location = new System.Drawing.Point(-67, -2);
+			this.lv_device_log.Location = new System.Drawing.Point(0, 73);
 			this.lv_device_log.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.lv_device_log.Name = "lv_device_log";
-			this.lv_device_log.Size = new System.Drawing.Size(3418, 432);
-			this.lv_device_log.TabIndex = 257;
+			this.lv_device_log.Size = new System.Drawing.Size(346, 385);
+			this.lv_device_log.TabIndex = 273;
 			this.lv_device_log.UseCompatibleStateImageBehavior = false;
 			this.lv_device_log.View = System.Windows.Forms.View.Details;
 			// 
@@ -1912,29 +2187,134 @@ namespace Awool
 			this.ch_log_message.Text = "내용";
 			this.ch_log_message.Width = 400;
 			// 
+			// nud_sales
+			// 
+			this.nud_sales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nud_sales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.nud_sales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.nud_sales.Location = new System.Drawing.Point(3375, 40);
+			this.nud_sales.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+			this.nud_sales.Name = "nud_sales";
+			this.nud_sales.Size = new System.Drawing.Size(52, 29);
+			this.nud_sales.TabIndex = 272;
+			// 
 			// panel1
 			// 
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.panel1.Controls.Add(this.lb_sale_nums);
-			this.panel1.Controls.Add(this.label5);
-			this.panel1.Controls.Add(this.lb_sale_total);
-			this.panel1.Controls.Add(this.bt_member_yesterday);
-			this.panel1.Controls.Add(this.bt_member_today);
-			this.panel1.Controls.Add(this.bt_member_3_month);
-			this.panel1.Controls.Add(this.bt_member_one_month);
-			this.panel1.Controls.Add(this.bt_member_excel);
-			this.panel1.Controls.Add(this.bt_member_one_week);
-			this.panel1.Controls.Add(this.pb_search_member);
-			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.dtp_member_e_date);
-			this.panel1.Controls.Add(this.dtp_member_s_date);
+			this.panel1.Controls.Add(this.bt_log_save);
+			this.panel1.Controls.Add(this.bt_log_print);
+			this.panel1.Controls.Add(this.bt_log_search);
+			this.panel1.Controls.Add(this.bt_log_clear);
+			this.panel1.Controls.Add(this.lbl_log_search);
+			this.panel1.Controls.Add(this.tb_log_search);
+			this.panel1.Controls.Add(this.cb_log_filter);
 			this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.panel1.Location = new System.Drawing.Point(3, 35);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(3360, 34);
+			this.panel1.Size = new System.Drawing.Size(3361, 34);
 			this.panel1.TabIndex = 256;
+			// 
+			// bt_log_save
+			// 
+			this.bt_log_save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_log_save.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_log_save.FlatAppearance.BorderSize = 0;
+			this.bt_log_save.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_log_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_log_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_log_save.Location = new System.Drawing.Point(4, 4);
+			this.bt_log_save.Name = "bt_log_save";
+			this.bt_log_save.Size = new System.Drawing.Size(24, 24);
+			this.bt_log_save.TabIndex = 1;
+			this.bt_log_save.UseVisualStyleBackColor = false;
+			this.bt_log_save.Click += new System.EventHandler(this.bt_log_save_Click);
+			// 
+			// bt_log_print
+			// 
+			this.bt_log_print.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_log_print.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_log_print.FlatAppearance.BorderSize = 0;
+			this.bt_log_print.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_log_print.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_log_print.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_log_print.Location = new System.Drawing.Point(32, 4);
+			this.bt_log_print.Name = "bt_log_print";
+			this.bt_log_print.Size = new System.Drawing.Size(24, 24);
+			this.bt_log_print.TabIndex = 2;
+			this.bt_log_print.UseVisualStyleBackColor = false;
+			this.bt_log_print.Click += new System.EventHandler(this.bt_log_print_Click);
+			// 
+			// bt_log_search
+			// 
+			this.bt_log_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_log_search.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_log_search.FlatAppearance.BorderSize = 0;
+			this.bt_log_search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_log_search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_log_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_log_search.Location = new System.Drawing.Point(60, 4);
+			this.bt_log_search.Name = "bt_log_search";
+			this.bt_log_search.Size = new System.Drawing.Size(24, 24);
+			this.bt_log_search.TabIndex = 3;
+			this.bt_log_search.UseVisualStyleBackColor = false;
+			this.bt_log_search.Click += new System.EventHandler(this.bt_log_search_Click);
+			// 
+			// bt_log_clear
+			// 
+			this.bt_log_clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.bt_log_clear.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.bt_log_clear.FlatAppearance.BorderSize = 0;
+			this.bt_log_clear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+			this.bt_log_clear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+			this.bt_log_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_log_clear.Location = new System.Drawing.Point(88, 4);
+			this.bt_log_clear.Name = "bt_log_clear";
+			this.bt_log_clear.Size = new System.Drawing.Size(24, 24);
+			this.bt_log_clear.TabIndex = 4;
+			this.bt_log_clear.UseVisualStyleBackColor = false;
+			this.bt_log_clear.Click += new System.EventHandler(this.bt_log_clear_Click);
+			// 
+			// lbl_log_search
+			// 
+			this.lbl_log_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbl_log_search.Location = new System.Drawing.Point(41, 8);
+			this.lbl_log_search.Name = "lbl_log_search";
+			this.lbl_log_search.Size = new System.Drawing.Size(71, 21);
+			this.lbl_log_search.TabIndex = 4;
+			this.lbl_log_search.Text = "검색 단어";
+			this.lbl_log_search.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lbl_log_search.Visible = false;
+			// 
+			// tb_log_search
+			// 
+			this.tb_log_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.tb_log_search.Location = new System.Drawing.Point(117, 4);
+			this.tb_log_search.Name = "tb_log_search";
+			this.tb_log_search.Size = new System.Drawing.Size(120, 29);
+			this.tb_log_search.TabIndex = 5;
+			this.tb_log_search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_log_search_KeyDown);
+			// 
+			// cb_log_filter
+			// 
+			this.cb_log_filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cb_log_filter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cb_log_filter.FormattingEnabled = true;
+			this.cb_log_filter.Items.AddRange(new object[] {
+            "내용",
+            "시스템",
+            "그룹",
+            "IP"});
+			this.cb_log_filter.Location = new System.Drawing.Point(241, 4);
+			this.cb_log_filter.Name = "cb_log_filter";
+			this.cb_log_filter.Size = new System.Drawing.Size(98, 23);
+			this.cb_log_filter.TabIndex = 6;
+			this.cb_log_filter.SelectedIndexChanged += new System.EventHandler(this.cb_log_filter_SelectedIndexChanged);
 			// 
 			// lb_sale_nums
 			// 
@@ -2049,14 +2429,14 @@ namespace Awool
 			// 
 			this.dtp_member_e_date.Location = new System.Drawing.Point(139, 5);
 			this.dtp_member_e_date.Name = "dtp_member_e_date";
-			this.dtp_member_e_date.Size = new System.Drawing.Size(114, 29);
+			this.dtp_member_e_date.Size = new System.Drawing.Size(114, 25);
 			this.dtp_member_e_date.TabIndex = 258;
 			// 
 			// dtp_member_s_date
 			// 
 			this.dtp_member_s_date.Location = new System.Drawing.Point(5, 5);
 			this.dtp_member_s_date.Name = "dtp_member_s_date";
-			this.dtp_member_s_date.Size = new System.Drawing.Size(112, 29);
+			this.dtp_member_s_date.Size = new System.Drawing.Size(112, 25);
 			this.dtp_member_s_date.TabIndex = 256;
 			// 
 			// statusStrip1
@@ -2119,7 +2499,7 @@ namespace Awool
             this.aboutToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1944, 28);
+			this.menuStrip1.Size = new System.Drawing.Size(1944, 30);
 			this.menuStrip1.TabIndex = 4;
 			this.menuStrip1.Text = "menuStrip1";
 			this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -2128,95 +2508,106 @@ namespace Awool
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.새로운구성도ToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.구성도열기ToolStripMenuItem,
             this.구성도저장ToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.구성도잠금수정불가ToolStripMenuItem,
+            this.구성도잠금해제ToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.로그보기ToolStripMenuItem,
-            this.로그저장ToolStripMenuItem,
             this.보고서출력ToolStripMenuItem,
             this.toolStripMenuItem4,
             this.종료ToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.ShortcutKeyDisplayString = "(Ctrl+F1)";
-			this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
 			this.fileToolStripMenuItem.Text = "파일";
 			// 
 			// 새로운구성도ToolStripMenuItem
 			// 
 			this.새로운구성도ToolStripMenuItem.Name = "새로운구성도ToolStripMenuItem";
-			this.새로운구성도ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F3)));
-			this.새로운구성도ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+			this.새로운구성도ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.새로운구성도ToolStripMenuItem.Text = "새로운 구성도";
-			// 
-			// toolStripMenuItem1
-			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(243, 6);
+			this.새로운구성도ToolStripMenuItem.Click += new System.EventHandler(this.새로운구성도ToolStripMenuItem_Click);
 			// 
 			// 구성도열기ToolStripMenuItem
 			// 
 			this.구성도열기ToolStripMenuItem.Name = "구성도열기ToolStripMenuItem";
-			this.구성도열기ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+			this.구성도열기ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.구성도열기ToolStripMenuItem.Text = "구성도 열기";
+			this.구성도열기ToolStripMenuItem.Click += new System.EventHandler(this.구성도열기ToolStripMenuItem_Click);
 			// 
 			// 구성도저장ToolStripMenuItem
 			// 
 			this.구성도저장ToolStripMenuItem.Name = "구성도저장ToolStripMenuItem";
-			this.구성도저장ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+			this.구성도저장ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.구성도저장ToolStripMenuItem.Text = "구성도 저장";
+			this.구성도저장ToolStripMenuItem.Click += new System.EventHandler(this.구성도저장ToolStripMenuItem_Click);
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
 			// 
 			// 구성도잠금수정불가ToolStripMenuItem
 			// 
 			this.구성도잠금수정불가ToolStripMenuItem.Name = "구성도잠금수정불가ToolStripMenuItem";
-			this.구성도잠금수정불가ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
-			this.구성도잠금수정불가ToolStripMenuItem.Text = "구성도 잠금(수정불가)";
+			this.구성도잠금수정불가ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.구성도잠금수정불가ToolStripMenuItem.Text = "구성도 잠금";
+			this.구성도잠금수정불가ToolStripMenuItem.Click += new System.EventHandler(this.구성도잠금ToolStripMenuItem_Click);
+			// 
+			// 구성도잠금해제ToolStripMenuItem
+			// 
+			this.구성도잠금해제ToolStripMenuItem.Name = "구성도잠금해제ToolStripMenuItem";
+			this.구성도잠금해제ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.구성도잠금해제ToolStripMenuItem.Text = "구성도 잠금 해제";
+			this.구성도잠금해제ToolStripMenuItem.Click += new System.EventHandler(this.구성도잠금해제ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(243, 6);
-			// 
-			// 로그보기ToolStripMenuItem
-			// 
-			this.로그보기ToolStripMenuItem.Name = "로그보기ToolStripMenuItem";
-			this.로그보기ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
-			this.로그보기ToolStripMenuItem.Text = "로그 보기";
-			// 
-			// 로그저장ToolStripMenuItem
-			// 
-			this.로그저장ToolStripMenuItem.Name = "로그저장ToolStripMenuItem";
-			this.로그저장ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
-			this.로그저장ToolStripMenuItem.Text = "로그 저장";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 6);
 			// 
 			// 보고서출력ToolStripMenuItem
 			// 
+			this.보고서출력ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.모니터링결과출력ToolStripMenuItem,
+            this.로그결과출력ToolStripMenuItem});
 			this.보고서출력ToolStripMenuItem.Name = "보고서출력ToolStripMenuItem";
-			this.보고서출력ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+			this.보고서출력ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.보고서출력ToolStripMenuItem.Text = "보고서 출력";
+			// 
+			// 모니터링결과출력ToolStripMenuItem
+			// 
+			this.모니터링결과출력ToolStripMenuItem.Name = "모니터링결과출력ToolStripMenuItem";
+			this.모니터링결과출력ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+			this.모니터링결과출력ToolStripMenuItem.Text = "모니터링 결과 출력";
+			this.모니터링결과출력ToolStripMenuItem.Click += new System.EventHandler(this.모니터링결과출력ToolStripMenuItem_Click);
+			// 
+			// 로그결과출력ToolStripMenuItem
+			// 
+			this.로그결과출력ToolStripMenuItem.Name = "로그결과출력ToolStripMenuItem";
+			this.로그결과출력ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+			this.로그결과출력ToolStripMenuItem.Text = "로그 결과 출력";
+			this.로그결과출력ToolStripMenuItem.Click += new System.EventHandler(this.로그결과출력ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem4
 			// 
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-			this.toolStripMenuItem4.Size = new System.Drawing.Size(243, 6);
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(204, 6);
 			// 
 			// 종료ToolStripMenuItem
 			// 
 			this.종료ToolStripMenuItem.Name = "종료ToolStripMenuItem";
-			this.종료ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
-			this.종료ToolStripMenuItem.Text = "종료";
+			this.종료ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.종료ToolStripMenuItem.Text = "프로그램 종료";
+			this.종료ToolStripMenuItem.Click += new System.EventHandler(this.종료ToolStripMenuItem_Click);
 			// 
 			// diagramToolStripMenuItem
 			// 
 			this.diagramToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionToolStripMenuItem,
-            this.모니터링중지ToolStripMenuItem,
-            this.toolStripMenuItem5,
-            this.장비검색ToolStripMenuItem});
+            this.모니터링중지ToolStripMenuItem});
 			this.diagramToolStripMenuItem.Name = "diagramToolStripMenuItem";
-			this.diagramToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+			this.diagramToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
 			this.diagramToolStripMenuItem.Text = "모니터링";
 			// 
 			// optionToolStripMenuItem
@@ -2224,28 +2615,19 @@ namespace Awool
 			this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
 			this.optionToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
 			this.optionToolStripMenuItem.Text = "모니터링 시작";
+			this.optionToolStripMenuItem.Click += new System.EventHandler(this.모니터링시작ToolStripMenuItem_Click);
 			// 
 			// 모니터링중지ToolStripMenuItem
 			// 
 			this.모니터링중지ToolStripMenuItem.Name = "모니터링중지ToolStripMenuItem";
 			this.모니터링중지ToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
 			this.모니터링중지ToolStripMenuItem.Text = "모니터링 중지";
-			// 
-			// toolStripMenuItem5
-			// 
-			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-			this.toolStripMenuItem5.Size = new System.Drawing.Size(184, 6);
-			// 
-			// 장비검색ToolStripMenuItem
-			// 
-			this.장비검색ToolStripMenuItem.Name = "장비검색ToolStripMenuItem";
-			this.장비검색ToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
-			this.장비검색ToolStripMenuItem.Text = "장비 검색";
+			this.모니터링중지ToolStripMenuItem.Click += new System.EventHandler(this.모니터링중지ToolStripMenuItem_Click);
 			// 
 			// 로그ToolStripMenuItem
 			// 
 			this.로그ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.시스템ToolStripMenuItem,
+            this.장비검색ToolStripMenuItem,
             this.toolStripMenuItem6,
             this.시스템추가ToolStripMenuItem,
             this.시스템수정ToolStripMenuItem,
@@ -2255,14 +2637,15 @@ namespace Awool
             this.그룹수정ToolStripMenuItem,
             this.그룹삭ㅈToolStripMenuItem});
 			this.로그ToolStripMenuItem.Name = "로그ToolStripMenuItem";
-			this.로그ToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+			this.로그ToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
 			this.로그ToolStripMenuItem.Text = "Device";
 			// 
-			// 시스템ToolStripMenuItem
+			// 장비검색ToolStripMenuItem
 			// 
-			this.시스템ToolStripMenuItem.Name = "시스템ToolStripMenuItem";
-			this.시스템ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
-			this.시스템ToolStripMenuItem.Text = "Device 검색";
+			this.장비검색ToolStripMenuItem.Name = "장비검색ToolStripMenuItem";
+			this.장비검색ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+			this.장비검색ToolStripMenuItem.Text = "Device 검색";
+			this.장비검색ToolStripMenuItem.Click += new System.EventHandler(this.장비검색ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem6
 			// 
@@ -2274,18 +2657,21 @@ namespace Awool
 			this.시스템추가ToolStripMenuItem.Name = "시스템추가ToolStripMenuItem";
 			this.시스템추가ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
 			this.시스템추가ToolStripMenuItem.Text = "Device 추가";
+			this.시스템추가ToolStripMenuItem.Click += new System.EventHandler(this.시스템추가ToolStripMenuItem_Click);
 			// 
 			// 시스템수정ToolStripMenuItem
 			// 
 			this.시스템수정ToolStripMenuItem.Name = "시스템수정ToolStripMenuItem";
 			this.시스템수정ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
 			this.시스템수정ToolStripMenuItem.Text = "Device 수정";
+			this.시스템수정ToolStripMenuItem.Click += new System.EventHandler(this.시스템수정ToolStripMenuItem_Click);
 			// 
 			// 시스템삭제ToolStripMenuItem
 			// 
 			this.시스템삭제ToolStripMenuItem.Name = "시스템삭제ToolStripMenuItem";
 			this.시스템삭제ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
 			this.시스템삭제ToolStripMenuItem.Text = "Device 삭제";
+			this.시스템삭제ToolStripMenuItem.Click += new System.EventHandler(this.시스템삭제ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem7
 			// 
@@ -2297,18 +2683,21 @@ namespace Awool
 			this.그룹추가ToolStripMenuItem.Name = "그룹추가ToolStripMenuItem";
 			this.그룹추가ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
 			this.그룹추가ToolStripMenuItem.Text = "그룹 추가";
+			this.그룹추가ToolStripMenuItem.Click += new System.EventHandler(this.그룹추가ToolStripMenuItem_Click);
 			// 
 			// 그룹수정ToolStripMenuItem
 			// 
 			this.그룹수정ToolStripMenuItem.Name = "그룹수정ToolStripMenuItem";
 			this.그룹수정ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
 			this.그룹수정ToolStripMenuItem.Text = "그룹 수정";
+			this.그룹수정ToolStripMenuItem.Click += new System.EventHandler(this.그룹수정ToolStripMenuItem_Click);
 			// 
 			// 그룹삭ㅈToolStripMenuItem
 			// 
 			this.그룹삭ㅈToolStripMenuItem.Name = "그룹삭ㅈToolStripMenuItem";
 			this.그룹삭ㅈToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
 			this.그룹삭ㅈToolStripMenuItem.Text = "그룹 삭제";
+			this.그룹삭ㅈToolStripMenuItem.Click += new System.EventHandler(this.그룹삭제ToolStripMenuItem_Click);
 			// 
 			// toosToolStripMenuItem
 			// 
@@ -2316,27 +2705,28 @@ namespace Awool
             this.optionToolStripMenuItem1,
             this.설정ToolStripMenuItem1,
             this.옵션ToolStripMenuItem,
-            this.구성도배경ToolStripMenuItem,
             this.toolStripMenuItem3,
-            this.sNMPOIDTempleteToolStripMenuItem,
+            this.구성도배경ToolStripMenuItem,
+            this.구성도배경삭제ToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.무선연결선그리기ToolStripMenuItem,
+            this.sNMPOIDTempleteToolStripMenuItem,
             this.toolStripMenuItem9,
             this.환경세팅ToolStripMenuItem});
 			this.toosToolStripMenuItem.Name = "toosToolStripMenuItem";
-			this.toosToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+			this.toosToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
 			this.toosToolStripMenuItem.Text = "도구";
 			// 
 			// optionToolStripMenuItem1
 			// 
 			this.optionToolStripMenuItem1.Name = "optionToolStripMenuItem1";
-			this.optionToolStripMenuItem1.Size = new System.Drawing.Size(234, 26);
+			this.optionToolStripMenuItem1.Size = new System.Drawing.Size(207, 26);
 			this.optionToolStripMenuItem1.Text = "네트워크 설정";
+			this.optionToolStripMenuItem1.Click += new System.EventHandler(this.네트워크설정ToolStripMenuItem_Click);
 			// 
 			// 설정ToolStripMenuItem1
 			// 
 			this.설정ToolStripMenuItem1.Name = "설정ToolStripMenuItem1";
-			this.설정ToolStripMenuItem1.Size = new System.Drawing.Size(231, 6);
+			this.설정ToolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
 			// 
 			// 옵션ToolStripMenuItem
 			// 
@@ -2344,68 +2734,74 @@ namespace Awool
             this.이름으로ToolStripMenuItem,
             this.iP주소로ToolStripMenuItem});
 			this.옵션ToolStripMenuItem.Name = "옵션ToolStripMenuItem";
-			this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+			this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.옵션ToolStripMenuItem.Text = "시스템 명칭";
 			// 
 			// 이름으로ToolStripMenuItem
 			// 
 			this.이름으로ToolStripMenuItem.Name = "이름으로ToolStripMenuItem";
-			this.이름으로ToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
-			this.이름으로ToolStripMenuItem.Text = "이름으로";
+			this.이름으로ToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
+			this.이름으로ToolStripMenuItem.Text = "이름으로 보기";
+			this.이름으로ToolStripMenuItem.Click += new System.EventHandler(this.이름으로ToolStripMenuItem_Click);
 			// 
 			// iP주소로ToolStripMenuItem
 			// 
 			this.iP주소로ToolStripMenuItem.Name = "iP주소로ToolStripMenuItem";
-			this.iP주소로ToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
-			this.iP주소로ToolStripMenuItem.Text = "IP 주소로";
-			// 
-			// 구성도배경ToolStripMenuItem
-			// 
-			this.구성도배경ToolStripMenuItem.Name = "구성도배경ToolStripMenuItem";
-			this.구성도배경ToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-			this.구성도배경ToolStripMenuItem.Text = "구성도 배경";
+			this.iP주소로ToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
+			this.iP주소로ToolStripMenuItem.Text = "IP주소로 보기";
+			this.iP주소로ToolStripMenuItem.Click += new System.EventHandler(this.iP주소로ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem3
 			// 
 			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(231, 6);
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(204, 6);
 			// 
-			// sNMPOIDTempleteToolStripMenuItem
+			// 구성도배경ToolStripMenuItem
 			// 
-			this.sNMPOIDTempleteToolStripMenuItem.Name = "sNMPOIDTempleteToolStripMenuItem";
-			this.sNMPOIDTempleteToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-			this.sNMPOIDTempleteToolStripMenuItem.Text = "SNMP OID Templete";
+			this.구성도배경ToolStripMenuItem.Name = "구성도배경ToolStripMenuItem";
+			this.구성도배경ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.구성도배경ToolStripMenuItem.Text = "구성도 배경";
+			this.구성도배경ToolStripMenuItem.Click += new System.EventHandler(this.구성도배경ToolStripMenuItem_Click);
+			// 
+			// 구성도배경삭제ToolStripMenuItem
+			// 
+			this.구성도배경삭제ToolStripMenuItem.Name = "구성도배경삭제ToolStripMenuItem";
+			this.구성도배경삭제ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.구성도배경삭제ToolStripMenuItem.Text = "구성도 배경 삭제";
+			this.구성도배경삭제ToolStripMenuItem.Click += new System.EventHandler(this.구성도배경삭제ToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem8
 			// 
 			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-			this.toolStripMenuItem8.Size = new System.Drawing.Size(231, 6);
+			this.toolStripMenuItem8.Size = new System.Drawing.Size(204, 6);
 			// 
-			// 무선연결선그리기ToolStripMenuItem
+			// sNMPOIDTempleteToolStripMenuItem
 			// 
-			this.무선연결선그리기ToolStripMenuItem.Name = "무선연결선그리기ToolStripMenuItem";
-			this.무선연결선그리기ToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-			this.무선연결선그리기ToolStripMenuItem.Text = "무선연결 선 그리기";
+			this.sNMPOIDTempleteToolStripMenuItem.Name = "sNMPOIDTempleteToolStripMenuItem";
+			this.sNMPOIDTempleteToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.sNMPOIDTempleteToolStripMenuItem.Text = "SNMP OID 설정";
+			this.sNMPOIDTempleteToolStripMenuItem.Click += new System.EventHandler(this.sNMPOIDTempleteToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem9
 			// 
 			this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-			this.toolStripMenuItem9.Size = new System.Drawing.Size(231, 6);
+			this.toolStripMenuItem9.Size = new System.Drawing.Size(204, 6);
 			// 
 			// 환경세팅ToolStripMenuItem
 			// 
 			this.환경세팅ToolStripMenuItem.Name = "환경세팅ToolStripMenuItem";
-			this.환경세팅ToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-			this.환경세팅ToolStripMenuItem.Text = "환경 세팅";
+			this.환경세팅ToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+			this.환경세팅ToolStripMenuItem.Text = "환경 설정";
 			this.환경세팅ToolStripMenuItem.Click += new System.EventHandler(this.환경세팅ToolStripMenuItem_Click);
 			// 
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.사용자관리ToolStripMenuItem,
+            this.관리자설정ToolStripMenuItem,
             this.도움말ToolStripMenuItem});
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(65, 26);
 			this.aboutToolStripMenuItem.Text = "About";
 			// 
 			// 사용자관리ToolStripMenuItem
@@ -2415,37 +2811,23 @@ namespace Awool
 			this.사용자관리ToolStripMenuItem.Text = "프로그램 정보";
 			this.사용자관리ToolStripMenuItem.Click += new System.EventHandler(this.사용자관리ToolStripMenuItem_Click);
 			// 
+			// 관리자설정ToolStripMenuItem
+			// 
+			this.관리자설정ToolStripMenuItem.Name = "관리자설정ToolStripMenuItem";
+			this.관리자설정ToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
+			this.관리자설정ToolStripMenuItem.Text = "관리자 설정";
+			this.관리자설정ToolStripMenuItem.Click += new System.EventHandler(this.관리자설정ToolStripMenuItem_Click);
+			// 
 			// 도움말ToolStripMenuItem
 			// 
 			this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
 			this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
 			this.도움말ToolStripMenuItem.Text = "도움말";
+			this.도움말ToolStripMenuItem.Click += new System.EventHandler(this.도움말ToolStripMenuItem_Click);
 			// 
 			// diagram1
 			// 
 			this.diagram1.TouchHitDistance = null;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.label4.Location = new System.Drawing.Point(142, 18);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(45, 23);
-			this.label4.TabIndex = 79;
-			this.label4.Text = "pixel";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.label25.Location = new System.Drawing.Point(142, 53);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(45, 23);
-			this.label25.TabIndex = 80;
-			this.label25.Text = "pixel";
 			// 
 			// MainFormV1
 			// 
@@ -2506,6 +2888,10 @@ namespace Awool
 			this.gb_device1.PerformLayout();
 			this.gb_device0.ResumeLayout(false);
 			this.gb_device0.PerformLayout();
+			this.ecp_ping_monitor.ResumeLayout(false);
+			this.ecp_ping_monitor.PerformLayout();
+			this.panel_ping_tool.ResumeLayout(false);
+			this.panel_ping_tool.PerformLayout();
 			this.aflp_state.ResumeLayout(false);
 			this.ecp_system_kind.ResumeLayout(false);
 			this.ecp_system_kind.PerformLayout();
@@ -2548,13 +2934,6 @@ namespace Awool
         private System.Windows.Forms.ColumnHeader ch_dev_desc;
         private MakarovDev.ExpandCollapsePanel.ExpandCollapsePanel ecp_device_log;
         private System.Windows.Forms.NumericUpDown nud_sales;
-        private System.Windows.Forms.ListView lv_device_log;
-        private System.Windows.Forms.ColumnHeader ch_log_no;
-        private System.Windows.Forms.ColumnHeader ch_log_time;
-        private System.Windows.Forms.ColumnHeader ch_log_ip;
-        private System.Windows.Forms.ColumnHeader ch_log_name;
-        private System.Windows.Forms.ColumnHeader ch_log_level;
-        private System.Windows.Forms.ColumnHeader ch_log_message;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lb_sale_nums;
         private System.Windows.Forms.Label label5;
@@ -2579,7 +2958,7 @@ namespace Awool
 		private MindFusion.Diagramming.WinForms.DiagramView dv_netview;
 		private MindFusion.Diagramming.Diagram main_diagram;
 		private MindFusion.Diagramming.WinForms.Ruler main_ruler;
-		private System.Windows.Forms.TreeView tv_group;
+		public System.Windows.Forms.TreeView tv_group;
 		private System.Windows.Forms.Button bt_group_save;
 		private System.Windows.Forms.Button bt_system_image;
 		private System.Windows.Forms.PictureBox pb_system_image;
@@ -2635,6 +3014,7 @@ namespace Awool
 		private System.Windows.Forms.Button bt_scan;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 사용자관리ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 관리자설정ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem diagramToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem toosToolStripMenuItem;
@@ -2646,16 +3026,15 @@ namespace Awool
 		private System.Windows.Forms.ToolStripMenuItem 구성도열기ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 구성도저장ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 구성도잠금수정불가ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 구성도잠금해제ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem 로그보기ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem 로그저장ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 보고서출력ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 모니터링결과출력ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 로그결과출력ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
 		private System.Windows.Forms.ToolStripMenuItem 종료ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 모니터링중지ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
 		private System.Windows.Forms.ToolStripMenuItem 장비검색ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem 시스템ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
 		private System.Windows.Forms.ToolStripMenuItem 시스템추가ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 시스템수정ToolStripMenuItem;
@@ -2668,13 +3047,41 @@ namespace Awool
 		private System.Windows.Forms.ToolStripMenuItem 옵션ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 이름으로ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem iP주소로ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem 구성도배경ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-		private System.Windows.Forms.ToolStripMenuItem sNMPOIDTempleteToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 구성도배경ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 구성도배경삭제ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
-		private System.Windows.Forms.ToolStripMenuItem 무선연결선그리기ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem sNMPOIDTempleteToolStripMenuItem;
 		private System.Windows.Forms.Panel pn_top_info;
-		private System.Windows.Forms.Button bt_finder;
+		private System.Windows.Forms.Button bt_finder;
+		private System.Windows.Forms.Button bt_mon_start;
+		private System.Windows.Forms.Button bt_mon_stop;
+		private System.Windows.Forms.Button bt_log_save;
+		private System.Windows.Forms.Button bt_log_print;
+		private System.Windows.Forms.Button bt_log_search;
+		private System.Windows.Forms.Button bt_log_clear;
+		private System.Windows.Forms.Label lbl_log_search;
+		private System.Windows.Forms.TextBox tb_log_search;
+		private System.Windows.Forms.ComboBox cb_log_filter;
+		private MakarovDev.ExpandCollapsePanel.ExpandCollapsePanel ecp_ping_monitor;
+		private System.Windows.Forms.Panel panel_ping_tool;
+		private System.Windows.Forms.Button bt_ping_save;
+		private System.Windows.Forms.Button bt_ping_print;
+		private System.Windows.Forms.Button bt_ping_search;
+		private System.Windows.Forms.Button bt_ping_clear;
+		private System.Windows.Forms.CheckBox chk_ping_include;
+		private System.Windows.Forms.ListView lv_ping_status;
+		private System.Windows.Forms.ColumnHeader ch_ping_index;
+		private System.Windows.Forms.ColumnHeader ch_ping_group;
+		private System.Windows.Forms.ColumnHeader ch_ping_name;
+		private System.Windows.Forms.ColumnHeader ch_ping_ip;
+		private System.Windows.Forms.ColumnHeader ch_ping_sent;
+		private System.Windows.Forms.ColumnHeader ch_ping_status;
+		private System.Windows.Forms.ColumnHeader ch_ping_receive;
+		private System.Windows.Forms.ColumnHeader ch_ping_max;
+		private System.Windows.Forms.ColumnHeader ch_ping_min;
+		private System.Windows.Forms.ColumnHeader ch_ping_lost;
+		private System.Windows.Forms.ColumnHeader ch_ping_loss;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
 		private System.Windows.Forms.ToolStripMenuItem 환경세팅ToolStripMenuItem;
 		private System.Windows.Forms.ListView lv_system;
@@ -2728,5 +3135,12 @@ namespace Awool
 		private System.Windows.Forms.ToolStripStatusLabel lblTime;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.ListView lv_device_log;
+		private System.Windows.Forms.ColumnHeader ch_log_no;
+		private System.Windows.Forms.ColumnHeader ch_log_time;
+		private System.Windows.Forms.ColumnHeader ch_log_ip;
+		private System.Windows.Forms.ColumnHeader ch_log_name;
+		private System.Windows.Forms.ColumnHeader ch_log_level;
+		private System.Windows.Forms.ColumnHeader ch_log_message;
 	}
 }

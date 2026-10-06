@@ -29,9 +29,9 @@ namespace AnyBoBu.info
 		public new	int		GetType() {
 			if (string.IsNullOrEmpty(name)) return -1;
 			string temp = name.ToLower();
-			if (temp.StartsWith("switch") || temp.StartsWith("스위치")) {
+			if (temp.Contains("switch") || temp.Contains("스위치")) {
 				return 1; 
-			} else if (temp.StartsWith("wireless") || temp.StartsWith("무선")) {
+			} else if (temp.Contains("wireless") || temp.Contains("무선") || temp.Contains("wifi") || temp.Contains("ap")) {
 				return 2;
 			}
 			return -1;

@@ -23,7 +23,7 @@ namespace AnyBoBu.info
 		public	string		addr		{ get; set; }	= "";
 		public	string		checkType	{ get; set; }	= "ping";
 		public	int			checkPort	{ get; set; }	= 0;
-		public	string		connType	{ get; set; }	= "https";
+		public	string		connType	{ get; set; }	= "http";
 		public	int			connPort	{ get; set; }	= 80;
 
 		public	string		agent		{ get; set; }	= "";
@@ -33,6 +33,7 @@ namespace AnyBoBu.info
 
 
 		public	bool		isSnmp		{ get; set; }
+		public	string		protocolType	{ get; set; }	= "SNMP";
 		public	string		setSnmp		= null;
 		public	string		setSwitch	= null;
 		public	string		setWifi		= null;
@@ -57,6 +58,7 @@ namespace AnyBoBu.info
 			info.desc = desc;
 			info.IsActive = IsActive;
 			info.isSnmp = isSnmp;
+			info.protocolType = protocolType;
 			info.setSnmp = setSnmp;
 			info.setSwitch = setSwitch;
 			info.setWifi = setWifi;

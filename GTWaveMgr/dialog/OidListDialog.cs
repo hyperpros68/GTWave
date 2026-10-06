@@ -1,4 +1,4 @@
-﻿using AnyBoBu.info;
+using AnyBoBu.info;
 using AnyLosk.widget;
 using Awool;
 using GTWave.info;
@@ -47,6 +47,7 @@ namespace AnyBoBu.dialog
 			*/
 
 			DispOidList();
+			LoadSavedTemplateFileName();
 
 		}
 
@@ -215,6 +216,10 @@ namespace AnyBoBu.dialog
 				}
 				mSaveHandle.Close();
 
+				string savedFileName = Path.GetFileName(mSaveFile);
+				tb_template_file.Text = savedFileName;
+				SaveTemplateFileName(savedFileName, mSaveFile);
+
 				Debug.WriteLine($"-------{mSaveFile}---------------");
 			} else {
 				MessageBox.Show("저장 작업을 취소합니다.");
@@ -287,9 +292,47 @@ namespace AnyBoBu.dialog
 								Debug.WriteLine($"OID Tuple -> {tuple.key}:{tuple.name}{tuple.oid}");
 							}
 						}
+
+						string loadedFileName = Path.GetFileName(openFileDialog.FileName);
+						tb_template_file.Text = loadedFileName;
+						SaveTemplateFileName(loadedFileName, openFileDialog.FileName);
 					}
 				}
 			}
+		}
+
+		private const string REG_SUBKEY = @"Software\Awool\GTWaveMgr";
+
+		private void LoadSavedTemplateFileName() {
+			try {
+				using (RegistryKey key = Registry.CurrentUser.OpenSubKey(REG_SUBKEY)) {
+					if (key != null) {
+						string savedFile = "";
+						if (dInfo != null && dInfo.id > 0) {
+							savedFile = key.GetValue($"OidTemplate_Dev_{dInfo.id}", "")?.ToString();
+						}
+						if (string.IsNullOrEmpty(savedFile)) {
+							savedFile = key.GetValue("OidTemplate_Last", "")?.ToString();
+						}
+						if (!string.IsNullOrEmpty(savedFile)) {
+							tb_template_file.Text = savedFile;
+						}
+					}
+				}
+			} catch { }
+		}
+
+		private void SaveTemplateFileName(string fileName, string fullPath = "") {
+			try {
+				using (RegistryKey key = Registry.CurrentUser.CreateSubKey(REG_SUBKEY)) {
+					if (key != null) {
+						if (dInfo != null && dInfo.id > 0) {
+							key.SetValue($"OidTemplate_Dev_{dInfo.id}", fileName);
+						}
+						key.SetValue("OidTemplate_Last", fileName);
+					}
+				}
+			} catch { }
 		}
 	}
 }

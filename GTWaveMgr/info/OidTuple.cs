@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,7 +52,7 @@ namespace AnyBoBu.info
 					string retv = (string)values[val];
 					if (retv == null) retv = "";
 					return	$"{retv}({val})";
-				} catch (Exception e) { }
+				} catch (Exception) { }
 			}
 			return val;
 		}
@@ -114,7 +114,7 @@ namespace AnyBoBu.info
 					if (tuple.Count() > 1) {
 						values.Add(tuple[0].Trim(), tuple[1].Trim());
 					}
-				} catch (Exception ee) { }
+				} catch (Exception) { }
 			}
 		}
 

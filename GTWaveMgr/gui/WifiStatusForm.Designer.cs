@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GTWave.gui {
@@ -513,7 +513,7 @@ namespace GTWave.gui {
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "WifiStatusForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "GTWave Linker";
+			this.Text = "GTWave Wireless 상태 정보";
 			this.Load += new System.EventHandler(this.WifiStatusForm_Load);
 			this.gb_device0.ResumeLayout(false);
 			this.gb_device0.PerformLayout();

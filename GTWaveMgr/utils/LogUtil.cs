@@ -1,4 +1,4 @@
-﻿using BoBuAI.info;
+using BoBuAI.info;
 using HyperBase;
 using System;
 using System.Collections.Generic;
@@ -100,7 +100,7 @@ namespace FireFly.utils
     public	class	LogUtil {
 		static readonly object _lock = new object();
 
-		public	static	string	mLogPath	= "/";
+		public	static	string	mLogPath	= @"..\logs";
 		public	static	int		mLevelW		= 0;		
 		public	static	int		mLevelD		= 0;		
 		public	static	int		mLevelN		= 0;
@@ -115,46 +115,98 @@ namespace FireFly.utils
 		public	static	void	LogE(string tag, string msg) { Log(5, tag, msg);}
 		public	static	void	LogF(string tag, string msg) { Log(6, tag, msg);}
 
+		public	static	void	LogException(string tag, Exception ex, string extraMsg = "") {
+			if (ex == null) return;
+			string msg = string.IsNullOrEmpty(extraMsg) 
+				? $"[EXCEPTION] {ex.GetType().FullName}: {ex.Message}\r\nStack: {ex.StackTrace}" 
+				: $"[EXCEPTION] {extraMsg} - {ex.GetType().FullName}: {ex.Message}\r\nStack: {ex.StackTrace}";
+			if (ex.InnerException != null) {
+				msg += $"\r\nInnerException: {ex.InnerException.GetType().FullName}: {ex.InnerException.Message}\r\nInnerStack: {ex.InnerException.StackTrace}";
+			}
+			Log(5, tag, msg);
+		}
+
 		public	static	void	LogEx(LogInfo info) {
+			if (info == null) return;
 			LogEx(info.mLevel, info.mTag, info.mTime, info.mMsg);
 		}
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		private	static	void	LogEx(int level, string tag, string time, string msg) {
+			char levelChar = GetLevelChar(level);
 			if (level >= mLevelD && mDisp != null) {
-				mDisp.Disp(LogInfo.mLevelString[level-1], tag, time, msg);
+				try { mDisp.Disp(levelChar, tag, time, msg); } catch { }
 			}
 
 			if (level >= mLevelN && mTrans != null) {
-				mTrans.LogTrans(LogInfo.mLevelString[level-1], tag, time, msg);
+				try { mTrans.LogTrans(levelChar, tag, time, msg); } catch { }
+			}
+		}
+
+		public static char GetLevelChar(int level) {
+			if (level >= 1 && level <= LogInfo.mLevelString.Length) {
+				return LogInfo.mLevelString[level - 1];
+			}
+			return 'I';
+		}
+
+		public static string EnsureLogDirectoryExists() {
+			try {
+				string logDir = GetLogDirectory();
+				if (!Directory.Exists(logDir)) {
+					Directory.CreateDirectory(logDir);
+				}
+				return logDir;
+			} catch {
+				return AppDomain.CurrentDomain.BaseDirectory;
+			}
+		}
+
+		public static string GetLogDirectory() {
+			try {
+				string basePath = AppDomain.CurrentDomain.BaseDirectory;
+				string targetPath = string.IsNullOrEmpty(mLogPath) ? @"..\logs" : mLogPath;
+				string fullPath;
+				if (Path.IsPathRooted(targetPath)) {
+					fullPath = Path.GetFullPath(targetPath);
+				} else {
+					fullPath = Path.GetFullPath(Path.Combine(basePath, targetPath));
+				}
+
+				if (!Directory.Exists(fullPath)) {
+					Directory.CreateDirectory(fullPath);
+				}
+				return fullPath;
+			} catch {
+				return AppDomain.CurrentDomain.BaseDirectory;
 			}
 		}
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		public	static	void	Log(int level, string tag, string msg) {
-			Console.WriteLine("{0},{1}, {2}",  LogInfo.mLevelString[level-1], tag, msg);
+			char levelChar = GetLevelChar(level);
+			Console.WriteLine("{0},{1}, {2}", levelChar, tag, msg);
+			System.Diagnostics.Debug.WriteLine(string.Format("[{0}][{1}] {2}", levelChar, tag, msg));
 			
 			lock (_lock) {
-				DateTime dtNow = DateTime.Now;
-				string strDate = dtNow.ToString("yyyyMMdd");
-				string strPath = String.Format(".\\{0}\\{1}_{2}.log", mLogPath, Const.mAppName, strDate);
+				try {
+					DateTime dtNow = DateTime.Now;
+					string strDate = dtNow.ToString("yyyyMMdd");
+					string logDir = EnsureLogDirectoryExists();
 
-				string strDir  = Path.GetDirectoryName(strPath);
-				DirectoryInfo diDir = new DirectoryInfo(strDir);
+					string strPath = Path.Combine(logDir, string.Format("{0}_{1}.log", Const.mAppName, strDate));
 
-				if (!diDir.Exists) {
-					diDir.Create();
-					diDir = new DirectoryInfo(strDir);
+					LogEx(level, tag, dtNow.ToString("HH:mm:ss"), msg);
+
+					if (level >= mLevelW) {
+						using (StreamWriter swStream = new StreamWriter(strPath, true, Encoding.UTF8)) {
+							string strLog = String.Format("{0}|{1}|{2,-6}|{3}", levelChar, dtNow.ToString("yyyy-MM-dd HH:mm:ss.fff"), tag, msg);
+							swStream.WriteLine(strLog);
+						}
+					}
+				} catch (Exception ex) {
+					System.Diagnostics.Debug.WriteLine("Log write failed: " + ex.Message);
 				}
-
-				LogEx(level, tag, dtNow.ToString("hh;mm:ss"), msg);
-
-				if (diDir.Exists && level >= mLevelW) {
-					System.IO.StreamWriter swStream = File.AppendText(strPath);
-					string strLog = String.Format("{0}|{1}|{2,-6}|{3}", LogInfo.mLevelString[level-1], dtNow.ToString("hh:mm:ss"), tag, msg);
-					swStream.WriteLine(strLog);
-					swStream.Close(); ;
-				}	
 			}
 		}
 	}

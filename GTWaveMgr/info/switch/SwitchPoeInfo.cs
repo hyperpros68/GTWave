@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -77,7 +77,7 @@ namespace AnyBoBu.info
 				info.poeVoltage.tuple.valueParse();
 				info.poePower.tuple.valueParse();
 				info.poeCurrent.tuple.valueParse();
-			} catch (Exception e) { }
+			} catch (Exception) { }
 
 			SetLastIdx(info.poeAdmin, bIdx, idx);
 			SetLastIdx(info.operStatus, bIdx, idx);

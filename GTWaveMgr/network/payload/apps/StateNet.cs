@@ -50,7 +50,7 @@ namespace AnySCL.network.payload.apps
 			foreach (var field in fields) {
 				try {
 					SetValue(control, field.Key, res.GetValuePayload(field.Value).ToString());
-				} catch(Exception e) {
+				} catch(Exception) {
 					Console.WriteLine("SetControl error => key :{0}, {1} is null", field.Key, field.Value);
 				}
 			}

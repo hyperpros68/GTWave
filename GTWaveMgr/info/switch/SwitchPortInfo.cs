@@ -1,4 +1,4 @@
-﻿using Microsoft.JScript;
+using Microsoft.JScript;
 using MindFusion.Vsx;
 using MySql.Data.MySqlClient;
 using SnmpSharpNet;
@@ -132,7 +132,7 @@ namespace AnyBoBu.info
 				info.ifSpeed.tuple.valueParse();
 				info.ifInOctets.tuple.valueParse();
 				info.ifOutOctets.tuple.valueParse();
-			} catch (Exception e) { }
+			} catch (Exception) { }
 
 			SetLastIdx(info.ifNumber, bIdx, idx);
 			SetLastIdx(info.ifIndex, bIdx, idx);

@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,9 @@ namespace AnyBoBu.info
 		public	int		idxFirst	{ get; set; }	= 2001;
 
 		public	string	desc		{ get; set; }	= "";
+
+		public SwitchInfo() {
+		}
 
 		public SwitchInfo(int deviceId) {
 			this.deviceId = deviceId;

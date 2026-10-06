@@ -1,4 +1,4 @@
-﻿namespace AnyBoBu.dialog
+namespace AnyBoBu.dialog
 {
     partial class OidListDialog
     {
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.lbl_template = new System.Windows.Forms.Label();
+			this.tb_template_file = new System.Windows.Forms.TextBox();
 			this.bt_close = new System.Windows.Forms.Button();
 			this.bt_apply = new System.Windows.Forms.Button();
 			this.tb_value = new System.Windows.Forms.TextBox();
@@ -54,12 +56,30 @@
 			this.cb_type = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
+			// lbl_template
+			// 
+			this.lbl_template.AutoSize = true;
+			this.lbl_template.Location = new System.Drawing.Point(12, 16);
+			this.lbl_template.Name = "lbl_template";
+			this.lbl_template.Size = new System.Drawing.Size(81, 12);
+			this.lbl_template.TabIndex = 152;
+			this.lbl_template.Text = "OID Template";
+			// 
+			// tb_template_file
+			// 
+			this.tb_template_file.BackColor = System.Drawing.SystemColors.Window;
+			this.tb_template_file.Location = new System.Drawing.Point(100, 12);
+			this.tb_template_file.Name = "tb_template_file";
+			this.tb_template_file.ReadOnly = true;
+			this.tb_template_file.Size = new System.Drawing.Size(118, 21);
+			this.tb_template_file.TabIndex = 153;
+			// 
 			// bt_close
 			// 
 			this.bt_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.bt_close.Location = new System.Drawing.Point(223, 495);
+			this.bt_close.Location = new System.Drawing.Point(205, 525);
 			this.bt_close.Name = "bt_close";
-			this.bt_close.Size = new System.Drawing.Size(70, 30);
+			this.bt_close.Size = new System.Drawing.Size(85, 30);
 			this.bt_close.TabIndex = 12;
 			this.bt_close.Text = "종  료";
 			this.bt_close.UseVisualStyleBackColor = true;
@@ -67,7 +87,7 @@
 			// 
 			// bt_apply
 			// 
-			this.bt_apply.Location = new System.Drawing.Point(20, 209);
+			this.bt_apply.Location = new System.Drawing.Point(20, 241);
 			this.bt_apply.Name = "bt_apply";
 			this.bt_apply.Size = new System.Drawing.Size(70, 30);
 			this.bt_apply.TabIndex = 6;
@@ -77,7 +97,7 @@
 			// 
 			// tb_value
 			// 
-			this.tb_value.Location = new System.Drawing.Point(105, 147);
+			this.tb_value.Location = new System.Drawing.Point(105, 179);
 			this.tb_value.Multiline = true;
 			this.tb_value.Name = "tb_value";
 			this.tb_value.Size = new System.Drawing.Size(176, 56);
@@ -86,7 +106,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(18, 152);
+			this.label3.Location = new System.Drawing.Point(18, 184);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(45, 12);
 			this.label3.TabIndex = 143;
@@ -94,7 +114,7 @@
 			// 
 			// tb_desc
 			// 
-			this.tb_desc.Location = new System.Drawing.Point(105, 120);
+			this.tb_desc.Location = new System.Drawing.Point(105, 152);
 			this.tb_desc.Name = "tb_desc";
 			this.tb_desc.Size = new System.Drawing.Size(176, 21);
 			this.tb_desc.TabIndex = 4;
@@ -102,7 +122,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(18, 125);
+			this.label2.Location = new System.Drawing.Point(18, 157);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(29, 12);
 			this.label2.TabIndex = 141;
@@ -110,7 +130,7 @@
 			// 
 			// tb_disp_nm
 			// 
-			this.tb_disp_nm.Location = new System.Drawing.Point(105, 39);
+			this.tb_disp_nm.Location = new System.Drawing.Point(105, 71);
 			this.tb_disp_nm.Name = "tb_disp_nm";
 			this.tb_disp_nm.Size = new System.Drawing.Size(176, 21);
 			this.tb_disp_nm.TabIndex = 1;
@@ -118,7 +138,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(18, 44);
+			this.label1.Location = new System.Drawing.Point(18, 76);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(53, 12);
 			this.label1.TabIndex = 138;
@@ -127,7 +147,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(18, 17);
+			this.label4.Location = new System.Drawing.Point(18, 49);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(25, 12);
 			this.label4.TabIndex = 147;
@@ -135,7 +155,7 @@
 			// 
 			// bt_add
 			// 
-			this.bt_add.Location = new System.Drawing.Point(117, 209);
+			this.bt_add.Location = new System.Drawing.Point(117, 241);
 			this.bt_add.Name = "bt_add";
 			this.bt_add.Size = new System.Drawing.Size(70, 30);
 			this.bt_add.TabIndex = 7;
@@ -145,7 +165,7 @@
 			// 
 			// bt_del
 			// 
-			this.bt_del.Location = new System.Drawing.Point(211, 209);
+			this.bt_del.Location = new System.Drawing.Point(211, 241);
 			this.bt_del.Name = "bt_del";
 			this.bt_del.Size = new System.Drawing.Size(70, 30);
 			this.bt_del.TabIndex = 8;
@@ -171,7 +191,7 @@
 			this.lv_oid_list.FullRowSelect = true;
 			this.lv_oid_list.GridLines = true;
 			this.lv_oid_list.HideSelection = false;
-			this.lv_oid_list.Location = new System.Drawing.Point(6, 252);
+			this.lv_oid_list.Location = new System.Drawing.Point(6, 280);
 			this.lv_oid_list.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.lv_oid_list.Name = "lv_oid_list";
 			this.lv_oid_list.Size = new System.Drawing.Size(284, 237);
@@ -208,18 +228,17 @@
 			// 
 			// bt_load
 			// 
-			this.bt_load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.bt_load.Location = new System.Drawing.Point(10, 495);
+			this.bt_load.Location = new System.Drawing.Point(223, 11);
 			this.bt_load.Name = "bt_load";
-			this.bt_load.Size = new System.Drawing.Size(91, 30);
-			this.bt_load.TabIndex = 10;
-			this.bt_load.Text = "파일 불러오기";
+			this.bt_load.Size = new System.Drawing.Size(68, 23);
+			this.bt_load.TabIndex = 154;
+			this.bt_load.Text = "파일찾기";
 			this.bt_load.UseVisualStyleBackColor = true;
 			this.bt_load.Click += new System.EventHandler(this.bt_load_Click);
 			// 
 			// tb_key
 			// 
-			this.tb_key.Location = new System.Drawing.Point(105, 12);
+			this.tb_key.Location = new System.Drawing.Point(105, 44);
 			this.tb_key.Name = "tb_key";
 			this.tb_key.Size = new System.Drawing.Size(176, 21);
 			this.tb_key.TabIndex = 0;
@@ -227,9 +246,9 @@
 			// bt_save
 			// 
 			this.bt_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.bt_save.Location = new System.Drawing.Point(114, 495);
+			this.bt_save.Location = new System.Drawing.Point(90, 525);
 			this.bt_save.Name = "bt_save";
-			this.bt_save.Size = new System.Drawing.Size(97, 30);
+			this.bt_save.Size = new System.Drawing.Size(105, 30);
 			this.bt_save.TabIndex = 11;
 			this.bt_save.Text = "파일 저장하기";
 			this.bt_save.UseVisualStyleBackColor = true;
@@ -237,7 +256,7 @@
 			// 
 			// tb_oid
 			// 
-			this.tb_oid.Location = new System.Drawing.Point(105, 67);
+			this.tb_oid.Location = new System.Drawing.Point(105, 99);
 			this.tb_oid.Name = "tb_oid";
 			this.tb_oid.Size = new System.Drawing.Size(176, 21);
 			this.tb_oid.TabIndex = 2;
@@ -245,7 +264,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(18, 72);
+			this.label5.Location = new System.Drawing.Point(18, 104);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(41, 12);
 			this.label5.TabIndex = 149;
@@ -254,7 +273,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(18, 99);
+			this.label6.Location = new System.Drawing.Point(18, 131);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(62, 12);
 			this.label6.TabIndex = 151;
@@ -267,7 +286,7 @@
             "Int",
             "OctetString",
             "String"});
-			this.cb_type.Location = new System.Drawing.Point(105, 95);
+			this.cb_type.Location = new System.Drawing.Point(105, 127);
 			this.cb_type.Name = "cb_type";
 			this.cb_type.Size = new System.Drawing.Size(176, 20);
 			this.cb_type.TabIndex = 3;
@@ -276,7 +295,9 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(302, 533);
+			this.ClientSize = new System.Drawing.Size(302, 565);
+			this.Controls.Add(this.tb_template_file);
+			this.Controls.Add(this.lbl_template);
 			this.Controls.Add(this.cb_type);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.tb_oid);
@@ -332,6 +353,8 @@
 		private System.Windows.Forms.TextBox tb_oid;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label lbl_template;
+		private System.Windows.Forms.TextBox tb_template_file;
 		private System.Windows.Forms.ComboBox cb_type;
 	}
 }

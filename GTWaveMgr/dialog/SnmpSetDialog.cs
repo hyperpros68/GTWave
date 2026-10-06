@@ -1,4 +1,4 @@
-﻿using AnyBoBu.info;
+using AnyBoBu.info;
 using Awool;
 using GTWave.info;
 using HyperBase;
@@ -54,31 +54,36 @@ namespace AnyBoBu.dialog
 		}
 
 		public void    DispInfo() {
+			if (sInfo == null) return;
+
 			tb_snmp_port.Text	= sInfo.port.ToString();
 			cb_verion.Text		= sInfo.version;
 			tb_v2c_read.Text	= sInfo.readComm;
 			tb_v2c_write.Text	= sInfo.writeComm;
 
 			tb_v3_user.Text		= sInfo.v3Username;
-			tb_v3_auth_alg.Text = sInfo.v3AuthAlg;
+			cb_v3_auth_alg.Text = sInfo.v3AuthAlg;
 			tb_v3_auth_pw.Text	= sInfo.v3AuthPw;
-			tb_v3_pri_alg.Text	= sInfo.v3PriAlg;
+			cb_v3_pri_alg.Text	= sInfo.v3PriAlg;
 			tb_v3_pri_pw.Text	= sInfo.v3PriPw;
 
 			//oidTempFile.Text = sInfo.oidTempFile;
 
-			tb_desc.Text        = dInfo.desc;
+			tb_desc.Text        = sInfo.desc;
 		}
 
 		private void bt_apply_Click(object sender, EventArgs e)
         {
-			sInfo.port		= Int32.Parse(tb_snmp_port.Text);
+			if (int.TryParse(tb_snmp_port.Text, out int port)) {
+				sInfo.port = port;
+			}
 			sInfo.version	= cb_verion.Text;
-			sInfo.readComm	= cb_verion.Text;
+			sInfo.readComm	= tb_v2c_read.Text;
+			sInfo.writeComm	= tb_v2c_write.Text;
 			sInfo.v3Username = tb_v3_user.Text;
-			sInfo.v3AuthAlg = tb_v3_auth_alg.Text;
+			sInfo.v3AuthAlg = cb_v3_auth_alg.Text;
 			sInfo.v3AuthPw	= tb_v3_auth_pw.Text;
-			sInfo.v3PriAlg	= tb_v3_pri_alg.Text;
+			sInfo.v3PriAlg	= cb_v3_pri_alg.Text;
 			sInfo.v3PriPw	= tb_v3_pri_pw.Text;
 
 			sInfo.desc		= tb_desc.Text;

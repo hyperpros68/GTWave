@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -91,7 +91,7 @@ namespace AnyBoBu.info
 				info.sfpTxBias.tuple.valueParse();
 				info.sfpTxPower.tuple.valueParse();
 				info.sfpRxPower.tuple.valueParse();
-			} catch (Exception e) { }
+			} catch (Exception) { }
 
 			SetLastIdx(info.sfpDeviceName, bIdx, idx);
 			SetLastIdx(info.sfpConnectorName, bIdx, idx);

@@ -34,6 +34,14 @@ namespace GTFinder {
 			public string Status { get; set; }
 		}
 
+		public class DeviceAddInfo {
+			public string Mac { get; set; }
+			public string Ip { get; set; }
+			public string Name { get; set; }
+			public string Model { get; set; }
+			public string Group { get; set; }
+		}
+
 		private ICaptureDevice m_pcapDevice = null;
 		private PhysicalAddress m_currentMac = PhysicalAddress.Parse("00-00-00-00-00-00");
 		private List<DeviceData> _discoveredDevices = new List<DeviceData>(); // [추가] 발견된 장비 목록
@@ -46,6 +54,7 @@ namespace GTFinder {
 		// [추가] 실행 인자 저장용 속성 (Program.ExecutionArgs 의존성 제거)
 		public string ExecutionArgs { get; set; } = "";
 		public List<string> GroupNames { get; set; } = new List<string>();
+		public Action<List<DeviceAddInfo>> OnDevicesAdd { get; set; } = null;
 
 		public FinderForm() {
 			InitializeComponent();
@@ -496,37 +505,56 @@ namespace GTFinder {
 					selectedGroup = gForm.SelectedGroup;
 				}
 
-				try
+				List<DeviceAddInfo> addList = new List<DeviceAddInfo>();
+				foreach (ListViewItem item in lv_system_list.SelectedItems)
 				{
-					// [수정] 선택된 모든 장비 정보 추출 및 저장
-					string resultPath = @"C:\GTWave\cfg\GTFinder_result.cfg";
-					StringBuilder sb = new StringBuilder();
+					string mac = item.SubItems[1].Text;
+					string ip = item.SubItems[2].Text;
+					string name = item.SubItems[3].Text;
+					string model = item.SubItems[4].Text;
 
-					foreach (ListViewItem item in lv_system_list.SelectedItems)
+					addList.Add(new DeviceAddInfo {
+						Mac = mac,
+						Ip = ip,
+						Name = name,
+						Model = model,
+						Group = selectedGroup
+					});
+				}
+
+				if (OnDevicesAdd != null)
+				{
+					OnDevicesAdd(addList);
+				}
+				else
+				{
+					try
 					{
-						string mac = item.SubItems[1].Text;
-						string ip = item.SubItems[2].Text;
-						string name = item.SubItems[3].Text;
-						string model = item.SubItems[4].Text;
+						string resultPath = @"C:\GTWave\cfg\GTFinder_result.cfg";
+						StringBuilder sb = new StringBuilder();
 
-						sb.AppendLine("[DEVICE]");
-						sb.AppendLine($"MAC={mac}");
-						sb.AppendLine($"IP={ip}");
-						sb.AppendLine($"NAME={name}");
-						sb.AppendLine($"MODEL={model}");
-						sb.AppendLine($"GROUP={selectedGroup}");
+						foreach (var d in addList)
+						{
+							sb.AppendLine("[DEVICE]");
+							sb.AppendLine($"MAC={d.Mac}");
+							sb.AppendLine($"IP={d.Ip}");
+							sb.AppendLine($"NAME={d.Name}");
+							sb.AppendLine($"MODEL={d.Model}");
+							sb.AppendLine($"GROUP={d.Group}");
+						}
+
+						File.WriteAllText(resultPath, sb.ToString(), Encoding.UTF8);
 					}
-
-					File.WriteAllText(resultPath, sb.ToString(), Encoding.UTF8);
+					catch (Exception ex)
+					{
+						PrintLog($"Error saving result: {ex.Message}");
+					}
 				}
-				catch (Exception ex)
-				{
-					PrintLog($"Error saving result: {ex.Message}");
-				}
+				return;
 			}
 
-			//StopAndClose();
-			//Close();
+			StopAndClose();
+			Close();
 		}
 
 		private void UDPCompex_DataProcess(clsUDPBroadcast sender, byte[] bytRecv, string strRecvIp) {
